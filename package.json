@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-40-feature-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lynla13/nodejs-40-feature-basic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lynla13/nodejs-40-feature-basic/issues"
+  },
+  "homepage": "https://github.com/Lynla13/nodejs-40-feature-basic#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

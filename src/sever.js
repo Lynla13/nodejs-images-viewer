@@ -1,6 +1,6 @@
 import express from "express";
 import configViewEngine from "./configs/viewEngine";
-import initWebRouter from "./route/web";
+import initWebRouter from "./route/homeRouter";
 require('dotenv').config();
 
 const app = express()

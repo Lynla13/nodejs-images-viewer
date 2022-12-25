@@ -1,26 +1,12 @@
-import connection from "../configs/connectDB";
+import pool from "../configs/connectDB";
+import printAllUser from "../model/homeModel";
+//import connection from "../model/baseModel";
 
-
-let getHomePage = (req, res) => {
-    //login 
-    let data = [];
-    connection.query(
-        'SELECT * FROM `user`',
-        function (err, results, fields) {
-            results.map((row) => {
-                data.push({
-                    username: row.username,
-                    pass: row.pass,
-                    email: row.email,
-                    level: row.level
-                })
-            });
-            console.log('>>>>>>>>>>>>>>>>>>>>> checkData:', typeof (data), JSON.stringify(data));
-            return res.render('index.ejs', { dataUser: JSON.stringify(data) });
-        });
-
+let getHomePage = async (req, res) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM user');
+    console.table(rows);
+    return res.render('index.ejs', { dataUser: JSON.stringify(rows) })
 }
-
 module.exports = {
     getHomePage
 }

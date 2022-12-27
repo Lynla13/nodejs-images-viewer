@@ -11,9 +11,15 @@
 </head>
 
 <body>
-    <%- include('home')%>
-        <h1>Hello from Ejs</h1>
-        <%=dataUser %>
+    <div id="content">
+        <%- include('home')%>
+
+            <h1>Hello from Ejs</h1>
+            <%=dataUser %>
+    </div>
+    <%- include('login')%>
+        <%- include('apps')%>
+
 </body>
 
 </html>

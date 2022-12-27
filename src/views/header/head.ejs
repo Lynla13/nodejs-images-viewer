@@ -1,7 +1,13 @@
 <%- include('link')%>
     <div class="topnav">
-        <a class="active" href="/">Home</a>
+        <a class="active" onclick="
+            freeLoad ('/','login','content');
+            freeLoad ('/','login1','content');">Home</a>
         <a href="#">Search</a>
-        <a href="/login">Login</a>
-        <a href="#about">OpenRadom</a>
+        <a onclick="
+            freeLoad ('/login','content','login');
+            freeLoad ('/login','login1','login');">Login</a>
+        <a onclick="
+            freeLoad ('/apps','content','login1');
+            freeLoad ('/apps','login','login1')">Apps</a>
     </div>

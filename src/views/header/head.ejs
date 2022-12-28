@@ -1,13 +1,13 @@
 <%- include('link')%>
     <div class="topnav">
         <a class="active" onclick="
-            freeLoad ('/','login','content');
-            freeLoad ('/','login1','content');">Home</a>
-        <a href="#">Search</a>
+            freeLoad ('/home','login','content');
+            freeLoad ('/home','apps','content');">Home</a>
+        <a>Search</a>
         <a onclick="
             freeLoad ('/login','content','login');
-            freeLoad ('/login','login1','login');">Login</a>
+            freeLoad ('/login','apps','login');">Login</a>
         <a onclick="
-            freeLoad ('/apps','content','login1');
-            freeLoad ('/apps','login','login1')">Apps</a>
+            freeLoad ('/apps','content','apps');
+            freeLoad ('/apps','login','apps')">Apps</a>
     </div>

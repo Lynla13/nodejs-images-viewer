@@ -3,8 +3,12 @@ function freeLoad(url, hide, show) {
     document.getElementById(hide).style.display = "none";
     document.getElementById(show).style.display = "block";
 }
-function processAjaxData(response, urlPath) {
-    document.getElementById("content").innerHTML = response.ejs;
-    document.title = response.pageTitle;
-    window.history.pushState({ "html": login.ejs, "pageTitle": response.pageTitle }, "", urlPath);
+function catchUrl(find, hide, show) {
+    if (findWorld(window.location.href, find)) {
+        document.getElementById(hide).style.display = "none";
+        document.getElementById(show).style.display = "block";
+    }
+}
+function findWorld(str, find) {
+    return str.includes(find, 0);
 }

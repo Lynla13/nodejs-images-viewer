@@ -1,9 +1,12 @@
-import connection from "../configs/connectDB";
+import { Callbacks } from "jquery";
+import pool from "../configs/connectDB";
+//import connection from "../model/baseModel";
 
-// Print all userData
 let printAllUser = async (req, res) => {
-    const [rows, fields] = await pool.execute('SELECT * FROM user');
-    return rows
+
+    return rows[0];
 }
 
-module.exports = printAllUser
+module.exports = {
+    printAllUser
+}

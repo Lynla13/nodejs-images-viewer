@@ -2,12 +2,16 @@
     <div class="topnav">
         <a class="active" onclick="
             freeLoad ('/home','login','content');
-            freeLoad ('/home','apps','content');">Home</a>
-        <a>Search</a>
+            freeLoad ('/home','apps','content');
+            PopUpClose('search-bar')">Home</a>
+        <a onclick="PopUpOpen('search-bar')">Search</a>
         <a onclick="
             freeLoad ('/login','content','login');
-            freeLoad ('/login','apps','login');">Login</a>
+            freeLoad ('/login','apps','login');
+            PopUpClose('search-bar')">Login</a>
         <a onclick="
             freeLoad ('/apps','content','apps');
-            freeLoad ('/apps','login','apps')">Apps</a>
+            freeLoad ('/apps','login','apps');
+            PopUpClose('search-bar')">Apps</a>
     </div>
+    <%- include('searchBar')%>

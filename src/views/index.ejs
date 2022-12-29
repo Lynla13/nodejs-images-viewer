@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>40-basic</title>
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 
 <body onload=" 
@@ -16,17 +14,12 @@
     catchUrl('/home', 'login', 'content');
     catchUrl('/home', 'apps', 'content');
     catchUrl('/apps', 'content', 'apps');
-    catchUrl('/apps', 'login', 'apps');">
+    catchUrl('/apps', 'login', 'apps');
+    PopUpClose('search-bar');">
     <%- include('header/head')%>
-        <div id="content">
-            <%- include('home')%>
-
-                <h1>Hello from Ejs</h1>
-                <%=dataUser %>
-        </div>
-        <%- include('login')%>
-            <%- include('apps')%>
-
+        <%- include('home')%>
+            <%- include('login')%>
+                <%- include('apps')%>
 </body>
 
 </html>

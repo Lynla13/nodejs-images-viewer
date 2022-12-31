@@ -2,20 +2,14 @@ import pool from "../configs/connectDB";
 import homeModel from "../model/homeModel";
 //import connection from "../model/baseModel";
 
-let moveToHomePage = (req, res) => {
-    return res.render('redirect.ejs')
-}
-
-function getHomePage(req, res) {
+function getSigninPage(req, res) {
 
     //somting here
     homeModel.getAllUser().then(userData => {
         console.log(userData); 
-        return res.render('index.ejs',{data: userData});
-      })
-   
+        return res.render('index.ejs',{data: JSON.stringify(userData)});
+      })   
 }
-
 module.exports = {
-    getHomePage, moveToHomePage
-} 
+    getSigninPage
+}

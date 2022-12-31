@@ -1,9 +1,15 @@
 import pool from "../configs/connectDB";
+import homeModel from "../model/homeModel";
 //import connection from "../model/baseModel";
 
-let getAppPage = async (req, res) => {
-    const [rows, fields] = await pool.execute('SELECT * FROM user');
-    return res.render('index.ejs', { dataUser: JSON.stringify(rows) })
+function getAppPage(req, res) {
+
+    //somting here
+    homeModel.getAllUser().then(userData => {
+        console.log(userData); 
+        return res.render('index.ejs',{data: JSON.stringify(userData)});
+      })
+   
 }
 module.exports = {
     getAppPage

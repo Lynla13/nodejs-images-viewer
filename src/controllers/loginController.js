@@ -1,9 +1,14 @@
 import pool from "../configs/connectDB";
+import homeModel from "../model/homeModel";
 //import connection from "../model/baseModel";
 
-let getLoginPage = async (req, res) => {
-    const [rows, fields] = await pool.execute('SELECT * FROM user');
-    return res.render('index.ejs', { dataUser: JSON.stringify(rows) })
+function getLoginPage(req, res) {
+
+    //somting here
+    homeModel.getAllUser().then(userData => {
+        console.log(userData); 
+        return res.render('index.ejs',{data: JSON.stringify(userData)});
+      })   
 }
 module.exports = {
     getLoginPage

@@ -11,10 +11,16 @@
 <body onload=" 
     catchUrl('/login', 'content', 'login');
     catchUrl('/login', 'apps', 'login');
+    catchUrl('/login', 'signin', 'login');
     catchUrl('/home', 'login', 'content');
     catchUrl('/home', 'apps', 'content');
+    catchUrl('/home', 'signin', 'content');
     catchUrl('/apps', 'content', 'apps');
     catchUrl('/apps', 'login', 'apps');
+    catchUrl('/apps', 'signin', 'apps');
+    catchUrl('/signin', 'login', 'signin');
+    catchUrl('/signin', 'apps', 'signin');
+    catchUrl('/signin', 'content', 'signin');
     PopUpClose('search-bar');">
     <%- include('header/head')%>
         <%- include('home')%>

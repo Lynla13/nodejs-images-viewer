@@ -1,4 +1,12 @@
 <div id="content">
     <h1>Hello from Ejs</h1>
-    <%=dataUser %>
+    <table>
+        <% for(let i=0; i < data.length; i++) { %>
+           <tr>
+             <td><%= data[i].username %></td>
+             <td><%= data[i].email %></td>
+           </tr>
+        <% } %>
+        <%=data [0].username%>
+        </table>
 </div>

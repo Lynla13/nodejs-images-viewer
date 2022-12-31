@@ -10,7 +10,6 @@ function getHomePage(req, res) {
 
     //somting here
     homeModel.getAllUser().then(userData => {
-        console.log(userData); 
         return res.render('index.ejs',{data: userData});
       })
    

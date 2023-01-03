@@ -7,7 +7,7 @@ function getSigninPage(req, res) {
     //somting here
     homeModel.getAllUser().then(userData => {
         console.log(userData); 
-        return res.render('index.ejs',{data: JSON.stringify(userData)});
+        return res.render('signin.ejs',{data: JSON.stringify(userData), user: req.session.loggedin ? req.session.username : 'Khong cos' });
       })   
 }
 module.exports = {

@@ -10,7 +10,8 @@ let router = express.Router();
 const initWebRouter = (app) => {
     router.get('/', homeController.moveToHomePage);
     router.get('/home', homeController.getHomePage);
-    router.get('/login', loginController.getLoginPage);
+    router.get('/login', loginController.loadLoginPage);
+    router.post('/login', loginController.LoginAuth);
     router.get('/signin', signinController.getSigninPage);
     router.get('/apps', appController.getAppPage);
     router.get('/about', (req, res) => {

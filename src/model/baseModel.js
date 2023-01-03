@@ -27,6 +27,13 @@ async function getAll(table) {
     let result =[];
     return result = await dbQuery('SELECT *from ' +table);
 }
+
+async function getByCondition(table,condition) {
+    let result =[];
+    return result = await dbQuery('SELECT * FROM '+ table +' WHERE '+ condition +'');
+}
+
+
 module.exports = {
-    dbQuery,getAll
+    dbQuery,getAll,getByCondition
 }

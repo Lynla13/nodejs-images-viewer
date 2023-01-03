@@ -7,10 +7,10 @@ let moveToHomePage = (req, res) => {
 }
 
 function getHomePage(req, res) {
-
     //somting here
     homeModel.getAllUser().then(userData => {
-        return res.render('index.ejs',{data: userData});
+        let username = 'Phu';
+        return res.render('home.ejs',{data: userData, user: req.session.loggedin ? req.session.username : 'Khong cos' });
       })
    
 }

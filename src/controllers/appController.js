@@ -7,7 +7,7 @@ function getAppPage(req, res) {
     //somting here
     homeModel.getAllUser().then(userData => {
         console.log(userData); 
-        return res.render('apps.ejs',{data: JSON.stringify(userData),user: req.session.loggedin ? req.session.username : 'Khong cos'});
+        return res.render('index.ejs',{data: JSON.stringify(userData),user: req.session.loggedin ? req.session.username : 'Khong cos'});
       })
    
 }

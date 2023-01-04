@@ -1,15 +1,15 @@
 import pool from "../configs/connectDB";
 import homeModel from "../model/homeModel";
-//import connection from "../model/baseModel";
+import pageModel from "../model/pageModel";
 
-function getSigninPage(req, res) {
 
-    //somting here
-    homeModel.getAllUser().then(userData => {
-        console.log(userData); 
-        return res.render('signin.ejs',{data: JSON.stringify(userData), user: req.session.loggedin ? req.session.username : 'Khong cos' });
+function loadSigninPage(req, res) {
+    let Id = 'signin2';
+    pageModel.getPageBy_Id(Id).then(signinPage => {
+    return res.render('index.ejs',{Page: signinPage});
       })   
 }
+
 module.exports = {
-    getSigninPage
+    loadSigninPage
 }

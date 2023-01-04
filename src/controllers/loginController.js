@@ -2,23 +2,17 @@ import { post } from "jquery";
 import pool from "../configs/connectDB";
 import homeModel from "../model/homeModel";
 import loginModel from "../model/loginModel";
+import pageModel from "../model/pageModel";
 //import connection from "../model/baseModel";
 
-function getLoginPage(req, res) {
-    homeModel.getAllUser().then(userData => {
-        console.log(userData); 
-        return res.render('index.ejs',{data: userData,user: req.session.loggedin ? req.session.username : 'Khong cos' });
-      })   
-}
-
+//Catch URL 
 function loadLoginPage(req, res) {
     let loginId = 'login';
-    loginModel.getByLoginPageBy_Id(loginId).then(loginPage => {
-    return res.render('login.ejs',{loginPage: loginPage});
+    pageModel.getPageBy_Id(loginId).then(loginPage => {
+    return res.render ('login.ejs', { loginPage: loginPage ? loginPage  : '' }); 
+    return res.send(loginPage [0]. Content) ;
       })   
 }
-
-
 function LoginAuth(req, res) {
     //somting here
 	// Ensure the input fields exists and are not empty
@@ -31,7 +25,7 @@ function LoginAuth(req, res) {
                     req.session.loggedin = true;
                     req.session.username = username;
                     // Redirect to home page
-                    res.redirect('/home');
+                    res.redirect('/');
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }			
@@ -45,5 +39,5 @@ function LoginAuth(req, res) {
 
 
 module.exports = {
-    getLoginPage,LoginAuth,loadLoginPage
+   LoginAuth,loadLoginPage
 }

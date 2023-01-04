@@ -11,7 +11,6 @@ function dbQuery(databaseQuery) {
                 throw error;
             }
             try {
-                console.log(result);
                 data(result);
 
             } catch (error) {

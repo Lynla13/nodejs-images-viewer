@@ -8,11 +8,10 @@ let router = express.Router();
 
 //Khoi tao web router
 const initWebRouter = (app) => {
-    router.get('/', homeController.moveToHomePage);
-    router.get('/home', homeController.getHomePage);
+    router.get('/', homeController.getHomePage);
     router.get('/login', loginController.loadLoginPage);
     router.post('/login', loginController.LoginAuth);
-    router.get('/signin', signinController.getSigninPage);
+    router.get('/signin', signinController.loadSigninPage);
     router.get('/apps', appController.getAppPage);
     router.get('/about', (req, res) => {
         res.send('Hello mather');

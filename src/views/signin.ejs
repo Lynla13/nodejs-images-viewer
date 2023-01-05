@@ -1,21 +1,14 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-5 right-side-login">
-            <div class="right-panel">
-                <h3>Login Page</h3>
-                <hr>
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control" id="username" placeholder="Username">
-                        <br>
-                        <input type="password" name="username" class="form-control" id="pass" placeholder="Password">
-                        <br>
-                        <input type="text" name="email" class="form-control" id="email" placeholder="Password">
-                        <br>
-                        <input type="submit" class ="form-control" id = "signin-submit" name ="submit" value="signin">
-                        <hr>
-                    </div>
-            </div>
-        </div>
-        <div class="col-md-7 left-side-login"></div>
-        </div>
+<%- include('header/head')%>
+<div id="page-body" style="height: auto; width: auto;">
+    <%-signinPage [0]. Content %>
+    <% if (session != '') {
+        %> 
+        <script>
+            window.location.href = "/";
+        </script>
+        <%
+    } %>
+    
 </div>
+
+

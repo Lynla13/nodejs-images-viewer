@@ -1,0 +1,23 @@
+.pre-loader-line {
+    margin-top: -40px;
+    background-color: rgb(57, 162, 211);
+    height: 5px;
+    width: 122px;
+    position: fixed;
+    z-index: 1000;
+    animation: vanish 1s forwards;
+}
+@keyframes vanish {
+        0%   {width: 0%;}
+        1%   {width: 10%;}
+        99% {width: 100%;}
+        100% {width: 0%;}
+
+      }
+
+      body.loading {
+        overflow: hidden;
+      }
+      body.loading .pre-loader-line {
+        display: block;
+    }

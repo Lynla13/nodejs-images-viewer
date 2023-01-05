@@ -9,7 +9,7 @@ import pageModel from "../model/pageModel";
 function loadLoginPage(req, res) {
     let loginId = 'login';
     pageModel.getPageBy_Id(loginId).then(loginPage => {
-    return res.render ('login.ejs', { loginPage: loginPage ? loginPage  : '' }); 
+    return res.render ('login.ejs', { loginPage: loginPage ? loginPage  : '', session: req.session.loggedin ? req.session.username: '' }); 
     return res.send(loginPage [0]. Content) ;
       })   
 }
@@ -25,19 +25,24 @@ function LoginAuth(req, res) {
                     req.session.loggedin = true;
                     req.session.username = username;
                     // Redirect to home page
-                    res.redirect('/');
+                    res.send ('<script> window.location.reload() </script>');
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }			
                 res.end();
           } )  
 	} else {
-		res.send(' ' + username +password );
+		res.send('Please enter all information!' );
 		res.end();
 	}
 }
-
+function loadLogout (req, res) {
+    req.session.loggedin = false;
+    req.session.username = '';
+    res.send ('<script> window.location.reload() </script>');
+    res.end();
+}
 
 module.exports = {
-   LoginAuth,loadLoginPage
+   LoginAuth,loadLoginPage,loadLogout
 }

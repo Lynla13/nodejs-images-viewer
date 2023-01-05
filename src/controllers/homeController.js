@@ -6,7 +6,7 @@ import pageModel from "../model/pageModel";
 function getHomePage(req, res) {
     let loginId = 'home';
     pageModel.getPageBy_Id(loginId).then(Page => {
-    return res.render('index.ejs', {Page: Page}) ;
+    return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); ;
     return res.send(Page [0].Content) ;
       })   
 }
@@ -19,5 +19,5 @@ function getHomePage(req, res) {
 // }
 
 module.exports = {
-  getHomePage
+  getHomePage,
 } 

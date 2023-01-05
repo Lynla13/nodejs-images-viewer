@@ -31,3 +31,16 @@
     background-color: #04AA6D;
     color: white;
 }
+
+#search-bar {
+    height: 32px;
+    width: 350px;
+    border-radius: 20px;
+    background-color: #333;
+    color: rgb(180, 180, 180);
+}
+.small-profile-pic {
+    height: 20px;
+    width: auto;
+    border-radius: 5px;
+}

@@ -1,17 +1,85 @@
 .right-panel {
     width: 350px;
-    height: 100%;
-    padding-top: 100px;
-    margin-left: 50px;
+    height: 90%;
+    margin-left: 30px;
+    background-color: rgba(34,34,34,255);
+    padding: 30px;
+    color: white;
+    border-radius: 5px;
 }
 
 .right-side-login {
-    height: 100%;    
+    margin-top: -50px;
+    padding-top: 50px;
+    height: 100%;  
+    background-color: #333;  
+}
+.row {
+    background-color: #333;  
 }
 .left-side-login {
     margin-top: -40px;
     height: 107%;
-    background-image: url(../files/imgs/gray1.jpg);
+    background-image: url(../files/imgs/download.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
+#login-auth {
+    color: red;
+}
+#signin-auth {
+    color: red;
+}
+.a-fake {
+    cursor: pointer;
+}
+#signin-submit{
+    height: 35px;
+    border-radius: 20px;
+    background-color: #333;
+    color: rgb(180, 180, 180);
+    border: 1px solid #333;
+}
+#login-submit{
+    height: 35px;
+    border-radius: 20px;
+    background-color: #333;
+    color: rgb(180, 180, 180);
+    border: 1px solid #333;
+}
+#signin-submit:hover {
+    background-color: rgb(194, 194, 194);
+    color: black;
+
+}
+
+#login-submit:hover {
+    background-color: rgb(194, 194, 194);
+    color: black;
+}
+
+.right-panel div #username {
+    height: 35px;
+    border-radius: 20px;
+    background-color: #333;
+    color: rgb(180, 180, 180);
+    border: 1px solid #333;
+}
+
+.right-panel div #pass {
+    height: 35px;
+    border-radius: 20px;
+    background-color: #333;
+    color: rgb(180, 180, 180);
+    border: 1px solid #333;
+}
+
+.right-panel div #email {
+    height: 35px;
+    border-radius: 20px;
+    background-color: #333;
+    color: rgb(180, 180, 180);
+    border: 1px solid #333;
+}
+
+

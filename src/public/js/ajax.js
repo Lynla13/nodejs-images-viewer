@@ -2,7 +2,7 @@
 $(document).on('click','#login-show',function(e){
     $.ajax({    
       type: "GET",
-      url: "/login",             
+      url: "/l",             
       dataType: "html",                  
       success: function(data){                    
           $("#page-body").html(data); 
@@ -26,7 +26,7 @@ $(document).on('click','#home-show',function(e){
 $(document).on('click','#signin-show',function(e){
   $.ajax({    
     type: "GET",
-    url: "/signin",             
+    url: "/s",             
     dataType: "html",                  
     success: function(data){                    
         $("#page-body").html(data); 
@@ -73,11 +73,10 @@ $(document).on('click','#signin-submit',function(e){
 $(document).on('click','#profile-show',function(e){
   $.ajax({    
     type: "GET",
-    url: "/profile",             
+    url: $("#profile-path").val(),             
     dataType: "html", 
-    success: function(data){                    
+    success: function(data){    
         $("#page-body").html(data); 
-       
     }
 });
 });

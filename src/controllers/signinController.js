@@ -17,7 +17,7 @@ function signinAuth(req, res) {
             } else {
                 signinModel.insertUser_Profile (username, password, email);
                 res.send (`<p style ="color: green"> Signin Complete! Now login
-                <a class ="a-fake" id ="login-show" onclick=" freeLoad ('/login'); " style ="color: lightblue">here</a</p>
+                <a class ="a-fake" id ="login-show" onclick=" freeLoad ('/l'); " style ="color: lightblue">here</a</p>
                 <style>
                 .right-side-login input{
                     display: none;

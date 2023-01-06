@@ -14,7 +14,7 @@
             <a onclick=" freeLoad ('/'); " id ="home-show" class ="active navbar-brand a-fake">NodeJSImage_View</a></li>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a onclick=" freeLoad ('/');reloadPage()" id ="home-show" class ="a-fake">Home</a></li>
+            <li class="active"><a onclick=" freeLoad ('/'); reloadPage()" id ="home-show" class ="a-fake">Home</a></li>
             <li><a onclick=" freeLoad ('/tag_group'); " class ="a-fake">Tags/Group</a></li>
             <li><a onclick=" freeLoad ('/app'); " class ="a-fake">Apps</a></li>
           </ul>
@@ -22,8 +22,8 @@
           <ul class="nav navbar-nav navbar-right">
             <% if (session != '') {
               %> 
-             <li><a class ="a-fake" id = "profile-show" onclick=" freeLoad ('/profile')" ><img src="files\imgs\unknown.jpg"  class ="small-profile-pic" alt="Avata"> &nbsp;<%-session%> </a></li>
-             <li><a  class ="a-fake"><span class="glyphicon glyphicon-plus" ></span></a></li>
+             <li><a class ="a-fake" id = "profile-show" onclick=" freeLoad ('/p/<%-session%>')" ><img src="files/imgs/gray1.jpg"  class ="small-profile-pic" alt="Avata"> &nbsp;<%-session%> </a></li>
+             <li><a class ="a-fake"><span class="glyphicon glyphicon-plus" ></span></a></li>
              <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-send" ></span></a> </li>
              <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-pushpin" ></span></a>   </li>
              <li><a class ="a-fake"><span class="glyphicon glyphicon-cog" ></span></a></li>
@@ -32,8 +32,8 @@
                 <%
                 }else {
                   %> 
-              <li><a class ="a-fake" id = "login-show" onclick=" freeLoad ('/login'); "><span class="glyphicon glyphicon-log-in" ></span> Login </a></li>
-              <li><a class ="a-fake" id = "signin-show" onclick=" freeLoad ('/signin'); "><span class="glyphicon glyphicon-user" ></span> Signin</a></li>
+              <li><a class ="a-fake" id = "login-show" onclick=" freeLoad ('/l'); "><span class="glyphicon glyphicon-log-in" ></span> Login </a></li>
+              <li><a class ="a-fake" id = "signin-show" onclick=" freeLoad ('/s'); "><span class="glyphicon glyphicon-user" ></span> Signin</a></li>
                   <%
                   }%>
               

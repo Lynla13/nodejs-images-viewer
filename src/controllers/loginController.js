@@ -18,7 +18,9 @@ function LoginAuth(req, res) {
                     req.session.loggedin = true;
                     req.session.username = username;
                     // Redirect to home page
-                    res.send ('<script> window.location.reload() </script>');
+                    res.send (`<script> 
+                        window.location.href ='/'                    
+                        </script>`);
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }			

@@ -69,6 +69,18 @@ $(document).on('click','#signin-submit',function(e){
     }
 });
 });
+//Ajax load profile fuction 
+$(document).on('click','#profile-show',function(e){
+  $.ajax({    
+    type: "GET",
+    url: "/profile",             
+    dataType: "html", 
+    success: function(data){                    
+        $("#page-body").html(data); 
+       
+    }
+});
+});
 
 //Ajax log out function
 $(document).on('click','#logout',function(e){

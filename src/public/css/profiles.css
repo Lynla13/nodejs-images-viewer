@@ -1,0 +1,78 @@
+#profile_block {
+    min-height:200px;
+    width: 92%;
+    margin-left: 6%;
+}
+#profile_res {
+    
+    margin-left:100px;
+    width: 250px;
+    height: 500px;
+    background-position: center;
+    position:fixed;
+}
+#profile_res img {
+    height: 100px;
+    width: 100px;
+    margin-top: -30px;
+    margin-left: 29%;
+    border-radius: 4px;
+    text-align: center;
+}
+#profile_res #fullname_show {
+    background-color: #333;
+    margin-top: 30px;
+    color: white;
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+}
+#profile_res #username_show {
+    background-color: #333;
+    margin-top: -13px;
+    color: white;
+    font-size: 11pt;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.info-text-res {
+    padding-left: 6%;
+    margin-top: 25px;
+    font-size: 12pt;
+    background-color: #333;
+    color: white;
+    font-style: italic;
+}
+
+#round-button {
+    margin-top: 40px;
+    background-color: #333;
+    margin-left: 85px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    color: white;
+    font-size: 14pt;
+}
+#round-button:hover {
+    background-color: rgb(27, 175, 34);
+    color: white;
+    font-size: 16pt;
+
+}
+
+#profile_block ul li a:hover {
+ background-color: #333;
+ color: white;
+}
+   
+#button-profile-more {
+    width: 120px;
+    background-color: rgba(34,34,34,255);
+    color: rgb(170, 170, 170);
+    border-radius: 20px;
+    border: 1px solid transparent;
+}

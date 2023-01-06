@@ -22,7 +22,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if (session != '') {
               %> 
-             <li><a class ="a-fake" id = "profile-show" ><img src="files\imgs\unknown.jpg"  class ="small-profile-pic" alt="Avata"> &nbsp;<%-session%> </a></li>
+             <li><a class ="a-fake" id = "profile-show" onclick=" freeLoad ('/profile')" ><img src="files\imgs\unknown.jpg"  class ="small-profile-pic" alt="Avata"> &nbsp;<%-session%> </a></li>
              <li><a  class ="a-fake"><span class="glyphicon glyphicon-plus" ></span></a></li>
              <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-send" ></span></a> </li>
              <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-pushpin" ></span></a>   </li>

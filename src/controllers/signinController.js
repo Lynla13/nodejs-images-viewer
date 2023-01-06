@@ -3,15 +3,6 @@ import homeModel from "../model/homeModel";
 import pageModel from "../model/pageModel";
 import signinModel from "../model/signinModel";
 
-
-function loadSigninPage(req, res) {
-    let Id = 'signin';
-    pageModel.getPageBy_Id(Id).then(signinPage => {
-    return res.render('signin.ejs',{signinPage: signinPage, session: req.session.loggedin ? req.session.username: ''});
-    return res.send(signinPage [0]. Content) ;
-      })   
-}
-
 function signinAuth(req, res) {
     //somting here
 	// Ensure the input fields exists and are not empty
@@ -25,9 +16,13 @@ function signinAuth(req, res) {
                 res.send (' Invalid email address or an account already exists!');
             } else {
                 signinModel.insertUser_Profile (username, password, email);
-                req.session.loggedin = true;
-                req.session.username = username;
-                res.send ('<script> window.location.reload() </script>');
+                res.send (`<p style ="color: green"> Signin Complete! Now login
+                <a class ="a-fake" id ="login-show" onclick=" freeLoad ('/login'); " style ="color: lightblue">here</a</p>
+                <style>
+                .right-side-login input{
+                    display: none;
+                }
+                </style>`);
             }			
         })
         
@@ -38,5 +33,5 @@ function signinAuth(req, res) {
 }
 
 module.exports = {
-    loadSigninPage,signinAuth
+    signinAuth
 }

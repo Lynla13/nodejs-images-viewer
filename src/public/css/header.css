@@ -44,3 +44,9 @@
     width: auto;
     border-radius: 5px;
 }
+body {
+    background-color: #333;
+} 
+#page-body {
+    background-color:#333;
+}

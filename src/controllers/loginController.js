@@ -6,13 +6,6 @@ import pageModel from "../model/pageModel";
 //import connection from "../model/baseModel";
 
 //Catch URL 
-function loadLoginPage(req, res) {
-    let loginId = 'login';
-    pageModel.getPageBy_Id(loginId).then(loginPage => {
-    return res.render ('login.ejs', { loginPage: loginPage ? loginPage  : '', session: req.session.loggedin ? req.session.username: '' }); 
-    return res.send(loginPage [0]. Content) ;
-      })   
-}
 function LoginAuth(req, res) {
     //somting here
 	// Ensure the input fields exists and are not empty
@@ -44,5 +37,5 @@ function loadLogout (req, res) {
 }
 
 module.exports = {
-   LoginAuth,loadLoginPage,loadLogout
+   LoginAuth,loadLogout
 }

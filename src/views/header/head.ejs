@@ -1,12 +1,11 @@
 <%- include('link')%>
 <style>
     body{
-        margin-top: 90px;
+        margin-top: 80px;
     }
 </style>
-<div class="pre-loader-page">
-  <div class="pre-loader-line">
-</div>
+<!-- Thanh loading khi taỉ trang -->
+  <div class="pre-loader-line"></div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -15,19 +14,19 @@
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a onclick=" freeLoad ('/'); reloadPage()" id ="home-show" class ="a-fake">Home</a></li>
-            <li><a onclick=" freeLoad ('/tag_group'); " class ="a-fake">Tags/Group</a></li>
-            <li><a onclick=" freeLoad ('/app'); " class ="a-fake">Apps</a></li>
+            <li><a onclick="freeLoad ('/tag_group'); " class ="a-fake">Tags/Group</a></li>
+            <li><a onclick=" freeLoad ('/app'); " class ="a-fake menu-item">Apps</a></li>
           </ul>
            <%- include('searchBar')%>
           <ul class="nav navbar-nav navbar-right">
             <% if (session != '') {
               %> 
-             <li><a class ="a-fake" id = "profile-show" onclick=" freeLoad ('/p/<%-session%>')" ><img src="files/imgs/gray1.jpg"  class ="small-profile-pic" alt="Avata"> &nbsp;<%-session%> </a></li>
-             <li><a class ="a-fake"><span class="glyphicon glyphicon-plus" ></span></a></li>
-             <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-send" ></span></a> </li>
-             <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-pushpin" ></span></a>   </li>
-             <li><a class ="a-fake"><span class="glyphicon glyphicon-cog" ></span></a></li>
-             <li><a class ="a-fake" id = "logout" ><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;</a></li>
+             <li><a class ="a-fake menu-item" id = "profile-show" onclick=" freeLoad ('/p/<%-session%>')" ><img src="files/imgs/gray1.jpg"  class ="small-profile-pic" alt="Avata"> &nbsp;<%-session%> </a></li>
+             <li><a class ="a-fake menu-item"><span class="glyphicon glyphicon-plus" ></span></a></li>
+             <li><a class ="a-fake menu-item" id = "login-show" ><span class="glyphicon glyphicon-send" ></span></a> </li>
+             <li><a class ="a-fake menu-item" id = "login-show" ><span class="glyphicon glyphicon-pushpin" ></span></a>   </li>
+             <li><a class ="a-fake menu-item"><span class="glyphicon glyphicon-cog" ></span></a></li>
+             <li><a class ="a-fake menu-item" id = "logout" ><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;</a></li>
              
                 <%
                 }else {

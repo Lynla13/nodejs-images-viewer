@@ -11,12 +11,14 @@ let router = express.Router();
 //Khoi tao web router
 const initWebRouter = (app) => {
     router.get('/', pageController.getPage);
-    router.get('/l', pageController.getPage);
+    router.get('/h', pageController.getPage);
+    router.get('/l', loginController.getPage);
     router.get('/logout', loginController.loadLogout);
     router.post('/login', loginController.LoginAuth);
-    router.get('/s', pageController.getPage);
+    router.get('/s', signinController.getPage);
     router.post('/signin', signinController.signinAuth);
     router.get('/apps', pageController.getPage);
+    router.get ('/p', pageController.getPage);
     router.get ('/p/:user', pageController.getPage);
     return app.use('/', router);
 }

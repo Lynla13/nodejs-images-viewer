@@ -6,8 +6,29 @@
    
 </head>
 <%- include('header/head')%>
-<body id = "page-body">
+    <% if (session == '') {%>
+        <body id ="page-body">
+            <%-Page [0].Content %>
+        </body>
+    <%}else {%>
+        <body id ="page-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-9">
+                         <%-Page [0].Content %>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" id ="following-user-show" class ="button-profile-more" > Following </button>
+                        <button type="button" id ="app-user-show" class ="button-profile-more" > Apps</button>
+                        <hr>
+                        <div class="app-follow-show">Phu</div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </body>
+       
+    <%}%>
 <input type="hidden" id ="profile-path" value ="/p/<%-session%>">
-<%-Page [0].Content %>
-</body>
 </html>

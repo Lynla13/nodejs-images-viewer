@@ -71,10 +71,11 @@
 }
    
 .button-profile-more {
-    width: 120px;
+    width: 100px;
+    margin-left: 10px;
     background-color: rgba(34,34,34,255);
     color: rgb(218, 218, 218);
-    border-radius: 20px;
+    border-radius: 5px;
     border: 1px solid transparent;
 }
 .button-profile-more:hover {

@@ -69,12 +69,24 @@ $(document).on('click','#signin-submit',function(e){
     }
 });
 });
+
+
+
+
+
+
+
+
+
+
+//Ajax load profile fuction 
+
 //Ajax load profile fuction 
 $(document).on('click','#profile-show',function(e){
   $.ajax({    
     type: "GET",
     url: $("#profile-path").val(),             
-    dataType: "html", 
+    dataType: "text", 
     success: function(data){    
         $("#page-body").html(data); 
     }

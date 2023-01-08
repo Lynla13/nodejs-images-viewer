@@ -5,39 +5,54 @@ import loginModel from "../model/loginModel";
 import pageModel from "../model/pageModel";
 //import connection from "../model/baseModel";
 
+
+function getPage(req, res) {
+    let user = req.params.user || req.session.username || '';
+    let urlAcess = req.originalUrl;
+    let pageId = urlAcess.slice(0,2);
+    pageModel.getPageBy_Id(pageId,user).then(Page => {
+    return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); 
+  })   
+}
+
+
+
+
+
+
+
 //Catch URL 
 function LoginAuth(req, res) {
-    //somting here
-	// Ensure the input fields exists and are not empty
-	let username= req.body.username;
-    let password= req.body.password;
+    // Ensure the input fields exists and are not empty
+    let username = req.body.username;
+    let password = req.body.password;
     if (username && password) {
-        loginModel.getByUsername_Pass(username,password).then(loginData => {
-                if (loginData.length > 0) {
-                    // Authenticate the user
-                    req.session.loggedin = true;
-                    req.session.username = username;
-                    // Redirect to home page
-                    res.send (`<script> 
+        loginModel.getByUsername_Pass(username, password).then(loginData => {
+            if (loginData.length > 0) {
+                // Authenticate the user
+                req.session.loggedin = true;
+                req.session.username = username;
+                // Redirect to home page
+                res.send(`<script> 
                         window.location.href ='/'                    
                         </script>`);
-                } else {
-                    res.send('Incorrect Username and/or Password!');
-                }			
-                res.end();
-          } )  
-	} else {
-		res.send('Please enter all information!' );
-		res.end();
-	}
+            } else {
+                res.send('Incorrect Username and/or Password!');
+            }
+            res.end();
+        })
+    } else {
+        res.send('Please enter all information!');
+        res.end();
+    }
 }
-function loadLogout (req, res) {
+function loadLogout(req, res) {
     req.session.loggedin = false;
     req.session.username = '';
-    res.send ('<script> window.location.reload() </script>');
+    res.send('<script> window.location.reload() </script>');
     res.end();
 }
 
 module.exports = {
-   LoginAuth,loadLogout
+    LoginAuth, loadLogout,getPage
 }

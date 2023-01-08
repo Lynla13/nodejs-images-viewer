@@ -3,6 +3,20 @@ import homeModel from "../model/homeModel";
 import pageModel from "../model/pageModel";
 import signinModel from "../model/signinModel";
 
+
+function getPage(req, res) {
+    let user = req.params.user || req.session.username || '';
+    let urlAcess = req.originalUrl;
+    let pageId = urlAcess.slice(0,2);
+    pageModel.getPageBy_Id(pageId,user).then(Page => {
+    return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); 
+  })   
+}
+
+
+
+
+
 function signinAuth(req, res) {
     //somting here
 	// Ensure the input fields exists and are not empty
@@ -33,5 +47,5 @@ function signinAuth(req, res) {
 }
 
 module.exports = {
-    signinAuth
+    signinAuth,getPage
 }

@@ -5,13 +5,14 @@ import appController from "../controllers/appController";
 import signinController from "../controllers/signinController";
 import profileController from "../controllers/profileController";
 import pageController from "../controllers/pageController";
+import postController from "../controllers/postController";
 
 let router = express.Router();
 
 //Khoi tao web router
 const initWebRouter = (app) => {
     router.get('/', pageController.getPage);
-    router.get('/h', pageController.getPage);
+    router.post('/post', postController.postContent);
     router.get('/l', loginController.getPage);
     router.get('/logout', loginController.loadLogout);
     router.post('/login', loginController.LoginAuth);

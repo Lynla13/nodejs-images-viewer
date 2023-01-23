@@ -1,5 +1,8 @@
 
 //Menu thay đổi để load tag
-  function animaMenu () {
-    document.getElementsByClassName("menu-item").style.display ="none";
+  function postPanelShow () {
+    document.getElementById("post-panel").style.display = "block";
+  }
+  function postPanelHide () {
+    document.getElementById("post-panel").style.display = "none";
   }

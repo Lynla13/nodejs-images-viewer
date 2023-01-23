@@ -37,6 +37,10 @@ async function getByCondition(table,condition) {
    pool.query ('INSERT INTO '+table2+' (username,fullname, birth_day, profile_ava, profile_bkg)  VALUES ('+username+',"unknow","00/00/0000","unknown.jpg","")');    
 }
 
+//Fuction insert one Table
+function insertTable(table1,tableContent,values1) {
+    pool.query ('INSERT INTO '+table1+' ('+tableContent+')  VALUES ('+values1+')');
+ }
 module.exports = {
-    dbQuery,getAll,getByCondition,insertTwoTable
+    dbQuery,getAll,getByCondition,insertTwoTable,insertTable
 }

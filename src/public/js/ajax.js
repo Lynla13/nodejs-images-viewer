@@ -106,3 +106,56 @@ $(document).on('click','#logout',function(e){
 });
 });
 
+//
+$(document).on('click','#add-imgs',function(e){
+  $.ajax({    
+    type: "POST",
+    url: "/post",             
+    dataType: "html", 
+    data: {
+      postContent: $("#post-content").val(),
+      username: $("#username").val(),
+      mypic: $("#add-imgs").val()
+    } ,    
+    //Print SignIn Authentication result in HTML <p>          
+    success: function(data){                    
+        $("#add-imgs-show").html(data); 
+       
+    }
+});
+});
+
+
+
+
+// ajax post IMage
+$(document).ready(function(){
+  var fileData;
+  var myFile;
+  $('#file').change(function(){
+      var filereader = new FileReader();
+      filereader.onload = function(event){
+         fileData  = event.target.result;
+      };
+      myFile = $('#file').prop('files')[0];  
+      console.log('myfile',myFile)
+     filereader.readAsDataURL(myFile)
+  });
+  $('#upload').click(function(){
+      $.ajax({
+          method:"post",
+          url:"/post",
+          dataType:"JSON",
+          data:{'filename':myFile.name,'file':fileData},
+          success:function(response){
+              if(response.msg=="success"){
+                 $('#file').val('');
+                 $('.img').append('<img src="../files/imgs/'+response.imageName+'" style="max-width:300px;height:300px;margin:10px 10px 10px 10px;">')
+              }
+          },
+          error:function(){
+              alert('server error');
+          }
+      });
+  });
+});

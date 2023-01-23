@@ -9,13 +9,18 @@
     <% if (session == '') {%>
         <body id ="page-body">
             <%-Page [0].Content %>
+            <div class="card-body text-center">
+                <input type="file" name="file" id="file" accept="image/*" class="form-control"><br>
+                <button type="button" class="btn btn-success" id="upload">uploadfile</button>
+                <div class="img"></div>
+        </div>
         </body>
     <%}else {%>
         <body id ="page-body">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-9">
-                         <%-Page [0].Content %>
+                        <%-Page [0].Content %>
                     </div>
                     <div class="col-sm-3">
                         <button type="button" id ="following-user-show" class ="button-profile-more" > Following </button>
@@ -30,5 +35,7 @@
         </body>
        
     <%}%>
+
 <input type="hidden" id ="profile-path" value ="/p/<%-session%>">
+<%- include('post')%>
 </html>

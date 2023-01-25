@@ -13,6 +13,8 @@ let router = express.Router();
 const initWebRouter = (app) => {
     router.get('/', pageController.getPage);
     router.post('/post', postController.postContent);
+    router.get('/post', postController.getPage);
+    router.delete('/post', postController.deletePics);  
     router.get('/l', loginController.getPage);
     router.get('/logout', loginController.loadLogout);
     router.post('/login', loginController.LoginAuth);

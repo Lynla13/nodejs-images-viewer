@@ -93,6 +93,18 @@ $(document).on('click','#profile-show',function(e){
 });
 });
 
+
+//post-add-show
+$(document).on('click','#post-add-show',function(e){
+  $.ajax({    
+    type: "GET",
+    url: "/post",             
+    dataType: "text", 
+    success: function(data){    
+        $("#landing-page-content").html(data); 
+    }
+});
+});
 //Ajax log out function
 $(document).on('click','#logout',function(e){
   $.ajax({    
@@ -107,27 +119,6 @@ $(document).on('click','#logout',function(e){
 });
 
 //
-$(document).on('click','#add-imgs',function(e){
-  $.ajax({    
-    type: "POST",
-    url: "/post",             
-    dataType: "html", 
-    data: {
-      postContent: $("#post-content").val(),
-      username: $("#username").val(),
-      mypic: $("#add-imgs").val()
-    } ,    
-    //Print SignIn Authentication result in HTML <p>          
-    success: function(data){                    
-        $("#add-imgs-show").html(data); 
-       
-    }
-});
-});
-
-
-
-
 // ajax post IMage
 $(document).ready(function(){
   var fileData;
@@ -135,13 +126,16 @@ $(document).ready(function(){
   $('#file').change(function(){
       var filereader = new FileReader();
       filereader.onload = function(event){
-         fileData  = event.target.result;
+      fileData  = event.target.result;
+      document.getElementById("update-image").click();
       };
       myFile = $('#file').prop('files')[0];  
       console.log('myfile',myFile)
      filereader.readAsDataURL(myFile)
+     
+     
   });
-  $('#upload').click(function(){
+  $('#update-image').click(function(){
       $.ajax({
           method:"post",
           url:"/post",
@@ -150,7 +144,11 @@ $(document).ready(function(){
           success:function(response){
               if(response.msg=="success"){
                  $('#file').val('');
-                 $('.img').append('<img src="../files/imgs/'+response.imageName+'" style="max-width:300px;height:300px;margin:10px 10px 10px 10px;">')
+                 $('.add-imgs-show').append(`<img src="../files/imgs/`+response.imageName+`" class ="imgs-post" style ="float: left">
+                 <input type="submit" value="X" class="form-control primary" id ="delete-pics" style ="width: 35px; float: left; margin-left: 10px">
+                 <input type="text" id ="post-content" class ="form-control" value="" style ="width: 250px;">
+                  <br>
+                  `)
               }
           },
           error:function(){
@@ -158,4 +156,15 @@ $(document).ready(function(){
           }
       });
   });
+});
+
+//deletePics
+$(document).on('click','#delete-pics',function(e){
+  $.ajax({    
+    type: "DELETE",
+    url: "/post",             
+    dataType: "text", 
+    success: function(data){            
+    }
+});
 });

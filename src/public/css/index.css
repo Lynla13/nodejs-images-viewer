@@ -142,7 +142,7 @@ body {
     display: none;
     background-color: rgba(34,34,34,255);
     width: 400px;
-    height: 450px;
+    height: 550px;
     border-radius: 5px;
     padding: 25px;
     z-index: 1000;
@@ -158,13 +158,12 @@ body {
     height: 45px;
     position: center;
 }
-#add-imgs-show {
+.add-imgs-show {
     max-width: 350px;
     max-height: 350px;
-    overflow: auto;
 }
 .post-inner {
-    height: 195px;
+    max-height: 395px;
     overflow: auto;
 }
 #add-imgs{
@@ -189,3 +188,10 @@ input::file-selector-button:hover{
     background-color: rgb(97, 97, 97);
 }
 
+.imgs-post {
+    margin-bottom: 10px;
+    width: 250px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+}

@@ -12,7 +12,7 @@ const fs     = require('fs');
 function postContent(req, res) {
     let newImageName = 'lynla _'+ Date.now()+'_.jpg';
     let path     = '/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+req.body.filename;
-    let image    = req.body.file;
+    let image    = req.body.file ;
     let data     = image.split(',')[1];
     fs.writeFileSync(path,data,{encoding:'base64'});
     let temp        = fs.readFileSync(path);
@@ -20,7 +20,11 @@ function postContent(req, res) {
     let base64data  = buff.toString('base64');
     fs.renameSync('/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+req.body.filename, '/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+newImageName);
     res.json({msg:'success',data:base64data, imageName:newImageName});
-
+    //save to database
+    // postContent = req.body.postContent ||"";
+    // image = newImageName;
+    // post_tag = req.body.post_tag ||"";
+    // postModel.insertPost('nonSignUser', postContent,image,post_tag);
 }
 
 function getPage (req,res) {
@@ -33,10 +37,10 @@ function getPage (req,res) {
 }
 function deletePics (req,res) {
     try {
-        fs.unlinkSync(`/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/`+req.body.filename+``);
-      
-        console.log("Delete File successfully.");
-      } catch (error) {
+        fs.unlinkSync(`/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/`+req.body.imageName+``);
+        console.log('success');
+        return res.send (`<script> window.location.href = '/' </script> `)
+      } catch (error) { 
         console.log(error);
       }
 }

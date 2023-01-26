@@ -3,7 +3,7 @@
 <div class="row">
 <div class="col-md-4">
 <input type="hidden" id ="username" value ="<%-session%>">
-<input type="text" name="" class="form-control" id="" placeholder="Tags" required>
+<input type="text" name="" class="form-control" id="post_tag" placeholder="Tags" required>
 <br>
 <input type="file" name="file" id="file" accept="image/*" class="form-control"><br>
 <input type="submit" value="update-image" id ="update-image" hidden>
@@ -17,3 +17,6 @@
 </div>
 <!-- ten nhom anh -->
 landing-page-content
+<script>
+    document.getElementById ("file").style.display ="none";
+</script>

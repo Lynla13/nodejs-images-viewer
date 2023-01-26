@@ -144,27 +144,29 @@ $(document).ready(function(){
           success:function(response){
               if(response.msg=="success"){
                  $('#file').val('');
-                 $('.add-imgs-show').append(`<img src="../files/imgs/`+response.imageName+`" class ="imgs-post" style ="float: left">
-                 <input type="submit" value="X" class="form-control primary" id ="delete-pics" style ="width: 35px; float: left; margin-left: 10px">
-                 <input type="text" id ="post-content" class ="form-control" value="" style ="width: 250px;">
-                  <br>
-                  `)
+                 $('.add-imgs-show').append(`<div id="picture-frame"><img src="../files/imgs/`+response.imageName+`" class ="imgs-post" style ="float: left">
+                   </div>
+                   <script> const element = document.getElementById("file");
+                   element.remove()</script>
+                  <br> `)
+                  //deletePics
+                  $(document).on('click','#cancel-post',function(e){
+                    $.ajax({    
+                      type: "DELETE",
+                      url: "/post",             
+                      dataType: "text", 
+                      data: {
+                        imageName:response.imageName,
+                      } ,  
+                      success: function(data){     
+                        $("#landing-page-content").html(data);        
+                      }
+                  });
+                  });
               }
           },
-          error:function(){
-              alert('server error');
-          }
+          
       });
   });
 });
 
-//deletePics
-$(document).on('click','#delete-pics',function(e){
-  $.ajax({    
-    type: "DELETE",
-    url: "/post",             
-    dataType: "text", 
-    success: function(data){            
-    }
-});
-});

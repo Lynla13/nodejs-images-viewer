@@ -178,20 +178,23 @@ body {
 
 input::file-selector-button {
     width: 100%;
-    height: 100%;
+    height: 10%;
     padding: 0.5em;
+    margin-top: 10px;
     border: thin solid grey;
     border-radius: 3px;
     cursor:pointer;
+    background-image: url(../files/imgs/gray1.jpg);
 }
 input::file-selector-button:hover{
     background-color: rgb(97, 97, 97);
 }
 
 .imgs-post {
+    margin-left: 50px;
     margin-bottom: 10px;
-    width: 250px;
-    height: 200px;
+    width: 410px;
+    height: 430px;
     border-radius: 5px;
     object-fit: cover;
 }

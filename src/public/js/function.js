@@ -1,8 +1,14 @@
 
 //Menu thay đổi để load tag
-  function postPanelShow () {
-    document.getElementById("post-panel").style.display = "block";
+  function picFramelShow () {
+    document.getElementById("picture-frame").style.display = "block";
   }
-  function postPanelHide () {
-    document.getElementById("post-panel").style.display = "none";
+  function picFrameHide () {
+    document.getElementById("picture-frame").style.display = "none";
   }
+  function cancelPost() {
+    window.location.href = '/' 
+    const element = document.getElementById("post-landing");
+    element.remove();
+  }
+  

@@ -145,9 +145,12 @@ $(document).ready(function(){
               if(response.msg=="success"){
                  $('#file').val('');
                  $('.add-imgs-show').append(`<div id="picture-frame"><img src="../files/imgs/`+response.imageName+`" class ="imgs-post" style ="float: left">
+                  <input type="hidden" id ="image-name" value ="`+response.imageName+`">
                    </div>
                    <script> const element = document.getElementById("file");
-                   element.remove()</script>
+                   element.style.display ="none"
+                   const element1 = document.getElementById("post-pics");
+                   element1.style.display ="block"</script>
                   <br> `)
                   //deletePics
                   $(document).on('click','#cancel-post',function(e){
@@ -163,10 +166,40 @@ $(document).ready(function(){
                       }
                   });
                   });
+
+                 
               }
+               
           },
           
       });
   });
+});
+
+//Post-add
+$(document).on('click','#post-pics',function(e){
+  e.preventDefault();
+
+  if ( $(this).data('requestRunning') ) {
+      return;
+  }
+
+  $(this).data('requestRunning', true);
+  $.ajax({    
+    type: "POST",
+    url: "/post-add",             
+    dataType: "text", 
+    data: {
+      imageName:$("#image-name").val(),
+      postTag: $("#post-tag").val(),
+      postContent: $("#post-content").val(),
+    } ,  
+    success: function(data){     
+      $("#landing-page-content").html(data);        
+    },
+    complete: function() {
+      $(this).data('requestRunning', false);
+  }
+});
 });
 

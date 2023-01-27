@@ -10,6 +10,7 @@ const fs     = require('fs');
 
 //Tải 1 vài trang sử dụng thông tin từ bảng profile
 function postContent(req, res) {
+  //Update Photo
     let newImageName = 'lynla _'+ Date.now()+'_.jpg';
     let path     = '/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+req.body.filename;
     let image    = req.body.file ;
@@ -18,23 +19,32 @@ function postContent(req, res) {
     let temp        = fs.readFileSync(path);
     let buff        = Buffer.from(temp);
     let base64data  = buff.toString('base64');
+    //Change photo's name
     fs.renameSync('/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+req.body.filename, '/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+newImageName);
     res.json({msg:'success',data:base64data, imageName:newImageName});
-    //save to database
-    // postContent = req.body.postContent ||"";
-    // image = newImageName;
-    // post_tag = req.body.post_tag ||"";
-    // postModel.insertPost('nonSignUser', postContent,image,post_tag);
+}
+
+function addPost (req, res) {
+  //save to database
+  let username = req.session.loggedin ? req.session.username: 'nonSignUser';
+  let imageName = req.body.imageName;
+  let postTag = req.body.postTag ;
+  let postContent =req.body.postContent;
+  console.log (postTag);
+  console.log (postContent);
+  postModel.insertPost(username, postContent,imageName,postTag);
+  return res.send (`<script> window.location.href = '/' </script> `)
 }
 
 function getPage (req,res) {
     let user = req.params.user || req.session.username || '';
-    let urlAcess = req.originalUrl;
     let pageId = "/post";
     pageModel.getPageBy_Id(pageId,user).then(Page => {
     return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); 
   })   
 }
+
+
 function deletePics (req,res) {
     try {
         fs.unlinkSync(`/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/`+req.body.imageName+``);
@@ -45,5 +55,5 @@ function deletePics (req,res) {
       }
 }
 module.exports = {
-    postContent,getPage,deletePics
+    postContent,getPage,deletePics,addPost
 } 

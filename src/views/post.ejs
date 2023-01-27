@@ -1,17 +1,21 @@
 <!-- POST -->
+<div id ="post-landing">
 <div class="container">
 <div class="row">
-<div class="col-md-4">
+<div class="col-md-5">
 <input type="hidden" id ="username" value ="<%-session%>">
-<input type="text" name="" class="form-control" id="post_tag" placeholder="Tags" required>
+<input type="text" name="" class="form-control" id="post-tag" placeholder="Tags" required><br>
+<input type="text" id ="post-content" class ="form-control" value="" placeholder ="status" >
 <br>
-<input type="file" name="file" id="file" accept="image/*" class="form-control"><br>
+<input type="file" name="file" id="file" accept="image/*"><br>
 <input type="submit" value="update-image" id ="update-image" hidden>
 <hr>
-<input type="submit" value="POST" class ="post-button">
+<input type="submit" value="POST" class ="post-button" id ="post-pics" style ="width: 50%; float: left">
+<input type="submit" value="CANCEL" class ="post-button" id ="cancel-post" onclick ="cancelPost()" style ="width: 50%; float: left">
 </div>
 <div class="col-md-7">
 <div class="add-imgs-show"></div>
+</div>
 </div>
 </div>
 </div>

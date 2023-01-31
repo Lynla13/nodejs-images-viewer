@@ -1,5 +1,5 @@
 import express from "express";
-import homeController from "../controllers/homeController";
+import postShowController from "../controllers/postShowController";
 import loginController from "../controllers/loginController";
 import appController from "../controllers/appController";
 import signinController from "../controllers/signinController";
@@ -30,7 +30,7 @@ const initWebRouter = (app) => {
     router.get ('/p', pageController.getPage);
     router.get ('/p/:user', pageController.getPage);
 
-    router.get ('/hentai',homeController.hentai);
+    router.get ('/postshow',postShowController.hentai);
     return app.use('/', router);
 }
 export default initWebRouter

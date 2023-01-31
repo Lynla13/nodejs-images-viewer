@@ -37,10 +37,14 @@ async function getByCondition(table,condition) {
    pool.query ('INSERT INTO '+table2+' (username,fullname, birth_day, profile_ava, profile_bkg)  VALUES ('+username+',"unknow","00/00/0000","unknown.jpg","")');    
 }
 
+//post and page_id
+function NaturalJoin3 (selectValue,tb1,tb2,tb3,condition){
+    pool.query (`SELECT `+selectValue+` FROM `+tb1+` a NATURAL join `+tb2+` b NATURAL join `+tb3+` c `+condition+``)
+}
 //Fuction insert one Table
 function insertTable(table1,tableContent,values1) {
     pool.query ('INSERT INTO '+table1+' ('+tableContent+')  VALUES ('+values1+')');
  }
 module.exports = {
-    dbQuery,getAll,getByCondition,insertTwoTable,insertTable
+    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3
 }

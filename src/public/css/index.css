@@ -202,3 +202,23 @@ input::file-selector-button:hover{
 #post-pics {
     display: none;
 }
+
+#image-show-out {
+    width: 220px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#image-show-out:hover {
+    opacity: 0.7;
+}
+
+#image-show-out-div {
+    width: 220px;
+    height: 340px;
+    float:left;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}

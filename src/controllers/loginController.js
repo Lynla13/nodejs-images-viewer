@@ -10,7 +10,7 @@ function getPage(req, res) {
     let user = req.params.user || req.session.username || '';
     let urlAcess = req.originalUrl;
     let pageId = urlAcess.slice(0,2);
-    pageModel.getPageBy_Id(pageId,user).then(Page => {
+    pageModel.getPageBy_Id(pageId,'lynla').then(Page => {
     return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); 
   })   
 }

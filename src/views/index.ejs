@@ -9,15 +9,21 @@
     <% if (session == '') {%>
         <body id ="page-body">
             <%-Page [0].Content %>
-            <div id="landing-page-content"></div>
+            <div id="landing-page-content">
+                <img src="files/imgs/loading.gif" alt=""  id ="loading-img" style ="width: 100px; height: auto ; margin-left: 30%;" srcset="">
+            </div>
         </body>
     <%}else {%>
         <body id ="page-body">
             <%-Page [0].Content %>
+            <div id="landing-page-content">
+                <img src="files/imgs/loading.gif" alt=""  id ="loading-img" style ="width: 100px; height: auto ; margin-left: 30%;" srcset="">
+            </div>
         </body>       
     <%}%>
 
 <input type="hidden" id ="profile-path" value ="/p/<%-session%>">
 
 </html>
+
 

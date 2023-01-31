@@ -1,40 +1,90 @@
 //Ajax load page on click
+
 $(document).on('click','#login-show',function(e){
-    $.ajax({    
-      type: "GET",
-      url: "/l",             
-      dataType: "html",                  
-      success: function(data){                    
-          $("#page-body").html(data); 
-         
-      }
-  });
+  e.preventDefault();
+
+  if ( $(this).data('requestRunning') ) {
+      return;
+  }
+
+  $(this).data('requestRunning', true);
+  $.ajax({    
+    type: "GET",
+    url: "/l",             
+    dataType: "html",                  
+    success: function(data){                    
+        $("#page-body").html(data); 
+        $('#landing-page-content').append(`
+        <style> 
+        #postShow {
+          display:none
+        }
+        </style>
+        `)
+    },complete: function() {
+      $(this).data('requestRunning', false);
+  }
+});
 });
 
+
+
 $(document).on('click','#home-show',function(e){
-    $.ajax({    
-      type: "GET",
-      url: "/",             
-      dataType: "html",                  
-      success: function(data){                    
-          $("#page-body").html(data); 
-         
-      }
-  });
+  e.preventDefault();
+
+  if ( $(this).data('requestRunning') ) {
+      return;
+  }
+
+  $(this).data('requestRunning', true);
+  $.ajax({    
+    type: "GET",
+    url: "/",             
+    dataType: "html",                  
+    success: function(data){                    
+        $("#page-body").html(data); 
+       
+    },complete: function() {
+      $(this).data('requestRunning', false);
+  }
+});
 });
 
 $(document).on('click','#signin-show',function(e){
+  e.preventDefault();
+  if ( $(this).data('requestRunning') ) {
+      return;
+  }
+  $(this).data('requestRunning', true);
   $.ajax({    
     type: "GET",
     url: "/s",             
     dataType: "html",                  
     success: function(data){                    
         $("#page-body").html(data); 
+        $('#landing-page-content').append(`
+        <style> 
+        #postShow {
+          display:none
+        }
+        </style>
+        `)
        
     }
 });
 });
+
+
+
+
+
+
+
+
+
+
 //Ajax load login function
+
 $(document).on('click','#login-submit',function(e){
   $.ajax({    
     type: "POST",
@@ -47,12 +97,16 @@ $(document).on('click','#login-submit',function(e){
     //Print Login Authentication result in HTML <p>          
     success: function(data){                    
         $("#login-auth").html(data); 
-       
     }
 });
 });
 //Ajax load signin fuction 
 $(document).on('click','#signin-submit',function(e){
+  e.preventDefault();
+  if ( $(this).data('requestRunning') ) {
+      return;
+  }
+  $(this).data('requestRunning', true);
   $.ajax({    
     type: "POST",
     url: "/signin",             
@@ -65,16 +119,9 @@ $(document).on('click','#signin-submit',function(e){
     //Print SignIn Authentication result in HTML <p>          
     success: function(data){                    
         $("#signin-auth").html(data); 
-       
     }
 });
 });
-
-
-
-
-
-
 
 
 
@@ -89,6 +136,13 @@ $(document).on('click','#profile-show',function(e){
     dataType: "text", 
     success: function(data){    
         $("#page-body").html(data); 
+        $('#landing-page-content').append(`
+        <style> 
+        #postShow {
+          display:none
+        }
+        </style>
+        `)
     }
 });
 });
@@ -102,6 +156,14 @@ $(document).on('click','#post-add-show',function(e){
     dataType: "text", 
     success: function(data){    
         $("#landing-page-content").html(data); 
+        //Hide post show due it is in onload call
+        $('#landing-page-content').append(`
+        <style> 
+        #postShow {
+          display:none
+        }
+        </style>
+        `)
     }
 });
 });
@@ -203,3 +265,19 @@ $(document).on('click','#post-pics',function(e){
 });
 });
 
+
+
+
+
+//load post
+$(document).ready(function(){
+  $.ajax({    
+    type: "GET",
+    url: "/postshow",             
+    dataType: "text", 
+    success: function(data){    
+        $("#postShow").html(data); 
+       
+    }
+});
+});

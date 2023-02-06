@@ -22,9 +22,19 @@ function dbQuery(databaseQuery) {
     });
 
 }
-async function getAll(table) {
+async function getAll(table,orderBy,limit=8,offset=1) {
     let result =[];
-    return result = await dbQuery('SELECT *from ' +table);
+    return result = await dbQuery('SELECT *from ' +table+' ORDER BY '+orderBy+' limit '+limit+' OFFSET '+offset+'');
+}
+
+async function getAllNoLimit(table) {
+    let result =[];
+    return result = await dbQuery('SELECT *from ' +table+'');
+}
+//get all with no limit
+async function getCount(countColunm,table) {
+    let result =[];
+    return result = await dbQuery('SELECT COUNT('+countColunm+') as COUNT FROM ' +table+'');
 }
 
 async function getByCondition(table,condition) {
@@ -43,8 +53,17 @@ function NaturalJoin3 (selectValue,tb1,tb2,tb3,condition){
 }
 //Fuction insert one Table
 function insertTable(table1,tableContent,values1) {
-    pool.query ('INSERT INTO '+table1+' ('+tableContent+')  VALUES ('+values1+')');
+    pool.query ('INSERT IGNORE INTO '+table1+' ('+tableContent+')  VALUES ('+values1+')');
  }
+
+//delete function 
+ function deleteCondi (table, condi) {
+    pool.query ('DELETE FROM '+table+' WHERE '+condi+'')
+    
+ }
+
+
+
 module.exports = {
-    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3
+    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3,getCount,getAllNoLimit,deleteCondi
 }

@@ -12,3 +12,26 @@
     element.remove();
   }
   
+  function showLoadingIcon() {
+    document.getElementById("loading-img").style.display ="block";
+   }
+
+   function displayNone(id,closest) {
+    const element = document.getElementById(id);
+    const closest = element.closest(closest);
+   }
+  
+function scollOnTop () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+function reLoad () {
+  location.reload();
+}
+
+function DoSubmit(sel)
+{
+     if(sel.val()!='select') this.form.submit();
+}
+ 

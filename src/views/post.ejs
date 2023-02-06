@@ -1,26 +1,28 @@
-<!-- POST -->
-<div id ="post-landing">
-<div class="container">
-<div class="row">
-<div class="col-md-5">
-<input type="hidden" id ="username" value ="<%-session%>">
-<input type="text" name="" class="form-control" id="post-tag" placeholder="Tags" required><br>
-<input type="text" id ="post-content" class ="form-control" value="" placeholder ="status" >
-<br>
-<input type="file" name="file" id="file" accept="image/*"><br>
-<input type="submit" value="update-image" id ="update-image" hidden>
-<hr>
-<input type="submit" value="POST" class ="post-button" id ="post-pics" style ="width: 50%; float: left">
-<input type="submit" value="CANCEL" class ="post-button" id ="cancel-post" onclick ="cancelPost()" style ="width: 50%; float: left">
-</div>
-<div class="col-md-7">
-<div class="add-imgs-show"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- ten nhom anh -->
-landing-page-content
+<!-- Paste in <head> tag of your HTML page -->
+<!-- Bootstrap 4 and jQuery CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<p><strong>Past in body tag of HTML page</strong></p>
+//HTML form with javascript 
+<form method="post" id="commentForm" action="/comment/store">
+    <div class="form-group">
+        <input type="text" class="form-control" name="body"/>
+        <div class="invalid-feedback ErrorCommentBody"></div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success add-submit-btn" value="Add Comment" />
+    </div>
+</form>
+<div id="response"></div>
+
+<!-- Past in bottom of body tag of HTML page -->
 <script>
-    document.getElementById ("file").style.display ="none";
+$(document).on('click', '.add-submit-btn', function(e){
+    e.preventDefault();
+    let form = $(this).closest('form');
+    let commentText = $.trim(form.find("input[name='body']").val());
+    //Perform task 
+    html = 'Value of input name body :'+ commentText;
+    $('#response').append(html);
+});
 </script>

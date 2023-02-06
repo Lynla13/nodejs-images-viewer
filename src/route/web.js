@@ -30,7 +30,13 @@ const initWebRouter = (app) => {
     router.get ('/p', pageController.getPage);
     router.get ('/p/:user', pageController.getPage);
 
-    router.get ('/postshow',postShowController.hentai);
+    router.get ('/postshow/page=:page',postShowController.loadPostData);
+    router.get ('/postapi',postShowController.loadAPIPost);
+    router.get ('/postshow/page=:page/tags=:tags',postShowController.loadPostByTag);  
+    router.get ('/postshow/tags',postShowController.loadTags);  
+    router.post ('/postshow/image',postShowController.deletePost)
+    router.get ('/post/:postId',postShowController.getPostDetailPage);  
+    router.post ('/post/loadApi',postShowController.loadPostOnLoad);  
     return app.use('/', router);
 }
 export default initWebRouter

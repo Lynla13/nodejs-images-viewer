@@ -1,186 +1,4 @@
-//Ajax load page on click
 
-$(document).on('click','#login-show',function(e){
-  e.preventDefault();
-
-  if ( $(this).data('requestRunning') ) {
-      return;
-  }
-
-  $(this).data('requestRunning', true);
-  $.ajax({    
-    type: "GET",
-    url: "/l",             
-    dataType: "html",                  
-    success: function(data){                    
-        $("#page-body").html(data); 
-        $('#landing-page-content').append(`
-        <style> 
-        #postShow {
-          display:none
-        }
-        </style>
-        `)
-    },complete: function() {
-      $(this).data('requestRunning', false);
-  }
-});
-});
-
-
-
-$(document).on('click','#home-show',function(e){
-  e.preventDefault();
-
-  if ( $(this).data('requestRunning') ) {
-      return;
-  }
-
-  $(this).data('requestRunning', true);
-  $.ajax({    
-    type: "GET",
-    url: "/",             
-    dataType: "html",                  
-    success: function(data){                    
-        $("#page-body").html(data); 
-       
-    },complete: function() {
-      $(this).data('requestRunning', false);
-  }
-});
-});
-
-$(document).on('click','#signin-show',function(e){
-  e.preventDefault();
-  if ( $(this).data('requestRunning') ) {
-      return;
-  }
-  $(this).data('requestRunning', true);
-  $.ajax({    
-    type: "GET",
-    url: "/s",             
-    dataType: "html",                  
-    success: function(data){                    
-        $("#page-body").html(data); 
-        $('#landing-page-content').append(`
-        <style> 
-        #postShow {
-          display:none
-        }
-        </style>
-        `)
-       
-    }
-});
-});
-
-
-
-
-
-
-
-
-
-
-//Ajax load login function
-
-$(document).on('click','#login-submit',function(e){
-  $.ajax({    
-    type: "POST",
-    url: "/login",             
-    dataType: "html", 
-    data: {
-      username: $("#username").val(),
-      password: $("#pass").val()
-    } ,    
-    //Print Login Authentication result in HTML <p>          
-    success: function(data){                    
-        $("#login-auth").html(data); 
-    }
-});
-});
-//Ajax load signin fuction 
-$(document).on('click','#signin-submit',function(e){
-  e.preventDefault();
-  if ( $(this).data('requestRunning') ) {
-      return;
-  }
-  $(this).data('requestRunning', true);
-  $.ajax({    
-    type: "POST",
-    url: "/signin",             
-    dataType: "html", 
-    data: {
-      username: $("#username").val(),
-      password: $("#pass").val(),
-      email: $("#email").val()
-    } ,    
-    //Print SignIn Authentication result in HTML <p>          
-    success: function(data){                    
-        $("#signin-auth").html(data); 
-    }
-});
-});
-
-
-
-
-//Ajax load profile fuction 
-
-//Ajax load profile fuction 
-$(document).on('click','#profile-show',function(e){
-  $.ajax({    
-    type: "GET",
-    url: $("#profile-path").val(),             
-    dataType: "text", 
-    success: function(data){    
-        $("#page-body").html(data); 
-        $('#landing-page-content').append(`
-        <style> 
-        #postShow {
-          display:none
-        }
-        </style>
-        `)
-    }
-});
-});
-
-
-//post-add-show
-$(document).on('click','#post-add-show',function(e){
-  $.ajax({    
-    type: "GET",
-    url: "/post",             
-    dataType: "text", 
-    success: function(data){    
-        $("#landing-page-content").html(data); 
-        //Hide post show due it is in onload call
-        $('#landing-page-content').append(`
-        <style> 
-        #postShow {
-          display:none
-        }
-        </style>
-        `)
-    }
-});
-});
-//Ajax log out function
-$(document).on('click','#logout',function(e){
-  $.ajax({    
-    type: "GET",
-    url: "/logout",             
-    dataType: "html", 
-    success: function(data){                    
-        $("#logout").html(data); 
-       
-    }
-});
-});
-
-//
 // ajax post IMage
 $(document).ready(function(){
   var fileData;
@@ -241,11 +59,9 @@ $(document).ready(function(){
 //Post-add
 $(document).on('click','#post-pics',function(e){
   e.preventDefault();
-
   if ( $(this).data('requestRunning') ) {
       return;
   }
-
   $(this).data('requestRunning', true);
   $.ajax({    
     type: "POST",
@@ -265,19 +81,137 @@ $(document).on('click','#post-pics',function(e){
 });
 });
 
-
-
-
-
-//load post
-$(document).ready(function(){
+// Load api pic to database;
+$(document).on('click','#postapi-add',function(e){
+  $('#postShow').append(`<style>  #loading-img { display:block }   #image-show-out-div { display:none; }  </style>`)
   $.ajax({    
     type: "GET",
-    url: "/postshow",             
+    url: "/postapi",             
     dataType: "text", 
-    success: function(data){    
-        $("#postShow").html(data); 
-       
+     success: function(data){     
+      $("#postShow").html(data);         
     }
 });
 });
+
+
+
+//ONLoad Event
+$(document).ready(function(){
+    currentPage =1;
+  loadTags()
+  loadMore(currentPage);
+  $(window).scroll(function () {
+    // End of the document reached?
+    if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=="false") {
+        currentPage++
+        $('#postShow').append(`<style> #loading-img { display:block } </style>`)
+        loadMore(currentPage);
+    }
+  }); 
+});
+
+function loadMore(currentPage){
+  $.ajax({    
+    type: "GET",
+    url: "/postshow/page="+currentPage,             
+    dataType: "text", 
+    success: function(data){    
+        $("#postShow").html(data); 
+    }
+});
+}
+
+function loadTags(){
+  $.ajax({    
+    type: "GET",
+    url: "/postshow/tags",             
+    dataType: "text", 
+    success: function(data){    
+        $(".app-follow-show").html(data); 
+    }
+});
+}
+
+
+
+//load by tags
+function submitTag (tag) {
+  currentPageTags =1;
+  // $('#postShow').load(location.href + "#postShow");
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
+  loadMoreByTags(currentPageTags,tag);
+} 
+
+//load page
+function submitPage(currentPageTags) {
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
+  loadMoreByTags(currentPageTags,$('#post-tags').val())
+}
+
+
+
+function loadMoreByTags(currentPageTags,tags){
+    $.ajax({    
+      type: "GET",
+      url: "/postshow/page="+currentPageTags+"/tags="+tags,           
+      dataType: "text", 
+      success: function(data){    
+          $("#postShow").html(data);
+      } 
+  });       
+  }
+
+
+///Load Api On load 
+
+function loadAPi() {
+  $('#postShow').append(`<style> #loading-img { display:block } </style>`)
+    if ( $(this).data('requestRunning') ) {
+        return;
+    }
+    $(this).data('requestRunning', true);
+  $.ajax({    
+    type: "POST",
+    url: "/post/loadApi",           
+    dataType: "text", 
+    complete: function() {
+      $(this).data('requestRunning', false);
+  }
+});       
+}
+
+//Delete die image 
+// function deletePost (imgName) {
+//   e.preventDefault();
+//     if ( $(this).data('requestRunning') ) {
+//         return;
+//     }
+//     $(this).data('requestRunning', true);
+//   setTimeout (deletePostPerTime,5000,imgName)
+// }
+// function deletePostPerTime(imgName){
+//   setTimeout(() => {  
+//     alert(imgName)
+//   $.ajax({    
+//     type: "POST",
+//     url: "/postshow/image",           
+//     dataType: "html", 
+//       data:{
+//       imgName: imgName,
+//     },
+//     success: function(data){    
+//     },complete: function() {
+//       $(this).data('requestRunning', false);
+//   }
+// });   ; }, 5000);
+      
+// }
+
+
+
+
+//imag Detail function
+function imgDetail(id) {
+  window.location.href = '/post/'+id
+}

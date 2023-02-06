@@ -21,8 +21,10 @@
     "@babel/core": "7.15.5",
     "@babel/node": "7.15.4",
     "@babel/preset-env": "7.15.6",
+    "@webcreate/infinite-ajax-scroll": "^3.0.1",
     "akaneko": "^5.2.5",
     "body-parser": "^1.20.1",
+    "bookquotes": "^1.2.0",
     "discord-phub": "^1.0.7",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
@@ -33,6 +35,9 @@
     "jquery": "^3.6.3",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.20"
+    "nekos-fun": "^1.1.2",
+    "nodemon": "^2.0.20",
+    "randomquote-api": "^3.5.6",
+    "reddit-image-fetcher": "^2.0.11"
   }
 }

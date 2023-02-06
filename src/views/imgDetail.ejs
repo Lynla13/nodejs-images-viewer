@@ -1,0 +1,53 @@
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('header/head')%>
+</head>
+<body id ="page-body">
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-9">
+    <title><%-postData [0].post_content %></title>
+    <!-- Single button -->
+    <div class="btn-group">
+    <button type="button" id ="shouldBeHide" class ="button-profile-more" onclick="history.back()"> Back </button>
+    <button type="button" id ="home-show" class ="button-profile-more" > Post </button>
+    <button type="button" id ="post-add-show" class ="button-profile-more" > Add Post </button>
+    </div>
+    <hr>
+    <div id ="show-more-button"></div>
+    <div id ="landing-page-content">
+      <img src="<%-postData [0].image %>" id="imgDetail" class ="imgShow" alt="Los Angeles">
+      <div style=" margin-left: 10px; width: 470px; float: left;">
+        <p id ="post-react" style="color: white; font-size: 14pt; margin-bottom: -15px;">&nbspComment</p>
+        <hr >
+        <div class="commentSector">
+          <textarea name="" id="" class = "form-control" cols="30" rows="3" placeholder="Comment"></textarea>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-sm-3" id ="side-fel">
+    <button type="button" id ="following-user-show" class ="button-profile-more" > Dislike </button>
+    <button type="button" id ="tag-show" class ="button-profile-more" > Useful </button>
+    <hr>
+    <div class="app-comment-show">
+      <div style="margin-top: -20px;">
+        <h2 id ="post-detail"><%-postData [0].post_content %></h2>
+        <h3 id ="post-detail" style="margin-top: -5px;font-style: italic;">#<%-postData [0].post_tag %></h3>
+      </div>
+      <div style="width: 100px;">
+        <img src="files/imgs/<%-author[0].profile_ava %>" id = "profile-pics" alt="">
+        <a class ="a-fake" style="color: white; font-size: 12pt; float: left;">@<%-author [0].username %></a>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
+
+

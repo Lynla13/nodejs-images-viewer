@@ -25,7 +25,7 @@ async function showPostByPostTag(post_tag,offset,limit)  {
     return Promise.resolve ( await baseModel.getByCondition(table,condition));
 }
 async function showPostByPostTagNoLimit(post_tag,sort)  {
-    let condition = `post_tag = "`+post_tag+`" order by post_time `+sort+``;
+    let condition = `post_tag LIKE '%`+post_tag+`%' order by post_time `+sort+``;
     return Promise.resolve ( await baseModel.getByCondition(table,condition));
 }
 

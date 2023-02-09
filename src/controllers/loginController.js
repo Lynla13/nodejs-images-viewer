@@ -7,12 +7,7 @@ import pageModel from "../model/pageModel";
 
 
 function getPage(req, res) {
-    let user = req.params.user || req.session.username || '';
-    let urlAcess = req.originalUrl;
-    let pageId = urlAcess.slice(0,2);
-    pageModel.getPageBy_Id(pageId,'lynla').then(Page => {
-    return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); 
-  })   
+    return res.render('sideBar/login.ejs', {session: req.session.loggedin ? req.session.username: '' }); 
 }
 
 

@@ -1,0 +1,12 @@
+<h3 style="color:white">Chọn thể loại bạn muốn và người theo dõi</h3>
+<hr>
+<% for(var i=0; i < tagsData.length; i++) { %>
+    <input type="checkbox" id="<%-tagsData[i].tags %>" name="<%-tagsData[i].tags %>" value="<%-tagsData[i].tags %>" style = "margin-right: 15%; float: right" onchange="userwallInsert ('',this.id)">
+    <p style = "color:rgb(255, 255, 255);margin-left: 10%"><%-tagsData[i].tags %></p>
+<% } %>
+<% for(var i=0; i < users.length; i++) { %>
+    <input type="checkbox" id="<%-users[i].username %>" name="<%-users[i].username %>" value="<%-users[i].username %>" style = "margin-right: 15%; float: right" onchange="userwallInsert (this.id,'')">
+    <p style = "color:rgb(255, 255, 255);margin-left: 10%"><%-users[i].username %></p>
+<% } %>
+<hr>
+<input type="button" value="submit" id = "submitTagChooice">

@@ -13,7 +13,7 @@ function postContent(req, res) {
   //Update Photo
     let newImageName = 'lynla _'+ Date.now()+'_.jpg';
     let path     = '/CODE/NodeJs-Project/nodejs-40-feature-basic/src/public/files/imgs/'+req.body.filename;
-    let image    = req.body.file ;
+    let image    = req.body.file;
     let data     = image.split(',')[1];
     fs.writeFileSync(path,data,{encoding:'base64'});
     let temp        = fs.readFileSync(path);
@@ -30,18 +30,13 @@ function addPost (req, res) {
   let imageName = req.body.imageName;
   let postTag = req.body.postTag ;
   let postContent =req.body.postContent;
-  console.log (postTag);
-  console.log (postContent);
   postModel.insertPost(username, postContent,imageName,postTag);
   return res.send (`<script> window.location.href = '/' </script> `)
 }
 
-function getPage (req,res) {
-    let user = req.params.user || req.session.username || '';
-    let pageId = "/post";
-    pageModel.getPageBy_Id(pageId,'lynla').then(Page => {
-    return res.render('index.ejs', {Page: Page, session: req.session.loggedin ? req.session.username: '' }); 
-  })   
+async function getPage (req,res) {
+   let tagsData = await postModel.showTags();
+    return res.render('sideBar/uploadFile.ejs', {tagsData:tagsData, session: req.session.loggedin ? req.session.username: '' }); 
 }
 
 

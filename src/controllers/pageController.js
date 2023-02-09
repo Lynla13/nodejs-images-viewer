@@ -13,6 +13,10 @@ function getPage(req, res) {
    })
 }
 
+function loadHome(req,res) {
+  res.render('moveToHome.ejs');
+}
+
 module.exports = {
-  getPage
+  getPage,loadHome
 } 

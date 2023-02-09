@@ -4,10 +4,10 @@ import baseModel from "./baseModel";
 //import connection from "../model/baseModel";
 
 // * Important promise function
-let user = 'user';
+let users = 'profile';
 
  async function getAllUser() {
-    return Promise.resolve ( await baseModel.getAll(user));
+    return Promise.resolve ( await baseModel.getAll(users));
 }
   
 module.exports = {

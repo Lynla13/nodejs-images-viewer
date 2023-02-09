@@ -1,36 +1,7 @@
 //Ajax load page on click
 
-$(document).on('click','#login-show',function(e){
-    e.preventDefault();
-  
-    if ( $(this).data('requestRunning') ) {
-        return;
-    }
-  
-    $(this).data('requestRunning', true);
-    $.ajax({    
-      type: "GET",
-      url: "/l",             
-      dataType: "html",                  
-      success: function(data){                    
-          $("#page-body").html(data); 
-          $('#landing-page-content').append(`
-          <style> 
-          #postShow {
-            display:none
-          }
-          </style>
-          `)
-      },complete: function() {
-        $(this).data('requestRunning', false);
-    }
-  });
-  });
-  
-  
-  
   $(document).on('click','#home-show',function(e){
-    loadAPi()
+    loadAPi();
     e.preventDefault();
     if ( $(this).data('requestRunning') ) {
         return;
@@ -50,41 +21,6 @@ $(document).on('click','#login-show',function(e){
   });
   });
   
-  $(document).on('click','#signin-show',function(e){
-    e.preventDefault();
-    if ( $(this).data('requestRunning') ) {
-        return;
-    }
-    $(this).data('requestRunning', true);
-    $.ajax({    
-      type: "GET",
-      url: "/s",             
-      dataType: "html",                  
-      success: function(data){                    
-          $("#page-body").html(data); 
-          $('#landing-page-content').append(`
-          <style> 
-          #postShow {
-            display:none
-          }
-          </style>
-          `)
-         
-      },complete: function() {
-        $(this).data('requestRunning', false);
-    }
-  });
-  });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   //Ajax load login function
   
   $(document).on('click','#login-submit',function(e){
@@ -103,12 +39,7 @@ $(document).on('click','#login-show',function(e){
   });
   });
   //Ajax load signin fuction 
-  $(document).on('click','#signin-submit',function(e){
-    e.preventDefault();
-    if ( $(this).data('requestRunning') ) {
-        return;
-    }
-    $(this).data('requestRunning', true);
+  $(document).on('click','#signin-submit',function(){
     $.ajax({    
       type: "POST",
       url: "/signin",             
@@ -119,13 +50,16 @@ $(document).on('click','#login-show',function(e){
         email: $("#email").val()
       } ,    
       //Print SignIn Authentication result in HTML <p>          
-      success: function(data){                    
+      success: function(data){       
+        //Nếu đăng kí thành công sẽ chạy chức năng load trang chọn tag và followings    
+        if (data == 'success') {
+          $('#refresh-section').load(location.href + " #refresh-section");
+        }   else {
           $("#signin-auth").html(data); 
+        }
       }
   });
   });
-  
-  
   
   
   //Ajax load profile fuction 
@@ -150,26 +84,6 @@ $(document).on('click','#login-show',function(e){
   });
   
   
-  //post-add-show
-  $(document).on('click','#post-add-show',function(e){
-    $.ajax({    
-      type: "GET",
-      url: "/post",             
-      dataType: "text", 
-      success: function(data){    
-          $("#landing-page-content").html(data); 
-          //Hide post show due it is in onload call
-          $('#landing-page-content').append(`
-          <style> 
-          #postShow {
-            display:none
-          }
-          #loading-img { display:none }
-          </style>
-          `)
-      }
-  });
-  });
   //Ajax log out function
   $(document).on('click','#logout',function(e){
     $.ajax({    

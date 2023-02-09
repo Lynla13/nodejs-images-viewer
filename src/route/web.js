@@ -6,23 +6,25 @@ import signinController from "../controllers/signinController";
 import profileController from "../controllers/profileController";
 import pageController from "../controllers/pageController";
 import postController from "../controllers/postController";
+import likeController from "../controllers/likeController";
 
 let router = express.Router();
 
 //Khoi tao web router
 const initWebRouter = (app) => {
     router.get('/', pageController.getPage);
+    router.get('/page=:page', postShowController.loadPostData);
     //Post
-    router.post('/post', postController.postContent);
+    router.post('/uploadcontent', postController.postContent);
     router.get('/post', postController.getPage);
-    router.delete('/post', postController.deletePics);  
+    router.delete('/deletepost', postController.deletePics);  
     router.post('/post-add', postController.addPost); 
     //Login
     router.get('/l', loginController.getPage);
     router.get('/logout', loginController.loadLogout);
     router.post('/login', loginController.LoginAuth);
     //Signin
-    router.get('/s', signinController.getPage);
+    router.get('/home/s', signinController.getPage);
     router.post('/signin', signinController.signinAuth);
     //Apps
     router.get('/apps', pageController.getPage);
@@ -32,11 +34,21 @@ const initWebRouter = (app) => {
 
     router.get ('/postshow/page=:page',postShowController.loadPostData);
     router.get ('/postapi',postShowController.loadAPIPost);
-    router.get ('/postshow/page=:page/tags=:tags',postShowController.loadPostByTag);  
     router.get ('/postshow/tags',postShowController.loadTags);  
-    router.post ('/postshow/image',postShowController.deletePost)
     router.get ('/post/:postId',postShowController.getPostDetailPage);  
+    router.get ('/postshow/detail/:postId',postShowController.getPostDetailSideBar);  
     router.post ('/post/loadApi',postShowController.loadPostOnLoad);  
+    router.get ('/postshow/tags/:tags/:page',postShowController.loadPostByTag);
+
+    router.post ('/showAllLike',likeController.showAllLike)
+    router.post ('/insertLike',likeController.insertLike);
+    router.post ('/removeLike',likeController.removeLike);
+    router.post ('/showLikeOnLoad',likeController.showLike);
+    //Dislike
+    router.post ('/showAllDislike',likeController.showAllDislike)
+    router.post ('/insertDislike',likeController.insertDislike);
+    router.post ('/removeDislike',likeController.removeDislike);
+    router.post ('/showDislikeOnLoad',likeController.showDislike);
     return app.use('/', router);
 }
 export default initWebRouter

@@ -1,0 +1,18 @@
+    <h3 style="color: aliceblue;">Upload Post</h3>
+    <hr>
+    <div class="add-imgs-show" style="max-height: 370px;"><p style="color:white">Image show here</p></div>
+    <hr>
+    <input type="hidden" id ="username" value ="<%-session%>">
+    <select name="tags" id="upload-post-tags" >
+    <% for(var i=0; i < tagsData.length; i++) { %>
+        <option value="<%-tagsData[i].tags%>"><%-tagsData[i].tags%></option>
+     <% } %>
+      </select>
+    <input type="text" id ="upload-post-content" class ="form-control" value="" placeholder ="status" required >
+    <br>
+    <input type="file" name="file" id ="file" accept="image/*">
+    <input type="submit" value="update-image" id ="update-image" hidden>
+    <hr>
+    <input type="submit" value="POST" class ="post-button" id ="post-pics" style ="width: 40%; float: left">
+    <input type="submit" value="CANCEL" class ="post-button" id ="cancel-post" style ="width: 50%; float: left">
+    

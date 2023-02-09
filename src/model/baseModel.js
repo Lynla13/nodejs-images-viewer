@@ -22,7 +22,7 @@ function dbQuery(databaseQuery) {
     });
 
 }
-async function getAll(table,orderBy,limit=8,offset=1) {
+async function getAll(table,orderBy='joinday desc',limit=8,offset=1) {
     let result =[];
     return result = await dbQuery('SELECT *from ' +table+' ORDER BY '+orderBy+' limit '+limit+' OFFSET '+offset+'');
 }
@@ -59,7 +59,6 @@ function insertTable(table1,tableContent,values1) {
 //delete function 
  function deleteCondi (table, condi) {
     pool.query ('DELETE FROM '+table+' WHERE '+condi+'')
-    
  }
 
 

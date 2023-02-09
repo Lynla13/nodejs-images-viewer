@@ -3,25 +3,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <%- include('header/head')%>
 </head>
-<%- include('header/head')%>
-    <% if (session == '') {%>
-        <body id ="page-body">
-            <%-Page [0].Content %>
-            <div id="landing-page-content">
-                <img src="files/imgs/loading.gif" alt=""  id ="loading-img" style ="width: 100px; height: auto ; margin-left: 34%;" srcset="">
+<body id ="page-body">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-9">
+        <title>40-basic</title>
+        <!-- Single button -->
+        <div class="btn-group">
+        <button type="button" id ="home-show" class ="button-profile-more" > Nothing </button>
+        <button type="button" id ="home-show" class ="button-profile-more" onclick ="loadApi ();window.location.href = '/'" > LoadMore </button>
+        </div>
+        <hr>
+        <div id ="show-more-button"></div>
+        <div id ="landing-page-content" >
+            <img src="files/imgs/loading.gif" id ="loading-img" alt="" srcset="" style="position: fixed; left:33%; width: 100px;">
+        </div>
+        </div>
+        <div class="col-sm-3" id ="side-fel">
+            <button type="button" id ="following-user-show" class ="button-profile-more" > Following </button>
+            <button type="button" id ="tag-show" class ="button-profile-more" onclick="loadTags()"> Tags </button>
+            <hr>
+            <div class="app-follow-show">
             </div>
-        </body>
-    <%}else {%>
-        <body id ="page-body">
-            <%-Page [0].Content %>
-            <div id="landing-page-content">
-                <img src="files/imgs/loading.gif" alt=""  id ="loading-img" style ="width: 100px; height: auto ; margin-left: 30%;" srcset="">
-            </div>
-        </body>       
-    <%}%>
-
+        </div>
+</body>
 </html>
 
 

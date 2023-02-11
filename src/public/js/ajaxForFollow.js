@@ -1,62 +1,106 @@
   //Hiện số follow
   function showFollowCount () {
+    let path = window.location.pathname;
+    let username = path.substring(6);
     $.ajax({    
         type: "POST",
-        url: "/showAllFollow",             
+        url: "/showFollowCount",             
         dataType: "text", 
+        data : {
+          username : username
+        },
         success: function(data){     
-            $('.app-follow-show').html(data); 
+            let fixedbase = data.replace('{"follow":', '')
+            let fixed = fixedbase.replace('}', '');
+            let toLikeNum = parseInt(fixed) 
+            //Nếu vừa ấnlike thì +1 vào nếu ấn dislike thì -1 
+            $("#showAllFollow").html('Nguời theo dõi: '+(toLikeNum));    
         }
     });  
   }
 
-  function showfollowOnload(follow) {
+  function showFollowOnload() {
+    let path = window.location.pathname;
+    let username = path.substring(6);
     $.ajax({    
         type: "POST",
-        url: "/showfollowOnLoad",             
+        url: "/showFollowOnLoad",             
         dataType: "text", 
         data : {
-            follow : follow
+          follow : username
         },
         success: function(data){     
-            $("#show-follow").val(data);   
-            if(($('#show-follow').val()) =='follow') {
-                document.getElementById ('follow-insert').style.display = 'none';
-                document.getElementById ('follow-remove').style.display = 'inline';
-            }else {
-                document.getElementById ('follow-insert').style.display = 'inline';
-                document.getElementById ('follow-remove').style.display = 'none';
+            $("#show-follow").val(data);  
+            if(data =='Follow') {
+                document.getElementById ('follow-insert').style.backgroundColor = '#6e6e6e';
+                document.getElementById('follow-insert').innerHTML = "Đã theo dõi";
             }
         }
     });
-    
   }
 
-
-
-   function followRemove(follow) {
+  function followInsert() {
+    let path = window.location.pathname;
+    let username = path.substring(6);
     $.ajax({    
       type: "POST",
-      url: "/removefollow",             
+      url: "/insertFollow",             
       dataType: "text", 
       data: {
-        follow : follow
+        follow: username,
+      },
+      success: function(data){     
+          $("#follow-insert").val(data);   
+          if(data =='follow') {
+              document.getElementById ('follow-insert').style.backgroundColor = '#6e6e6e';
+              document.getElementById('follow-insert').innerHTML = "Đã theo dõi";
+              showFollowCount ()
+          }else if(data =='nofollow') {
+            document.getElementById ('follow-insert').style.backgroundColor = '#222222';
+            document.getElementById('follow-insert').innerHTML = "Theo dõi";
+            showFollowCount ()
+          }
       }
   });
-  document.getElementById ('follow-insert').style.display = 'inline';
-  document.getElementById ('follow-remove').style.display = 'none';
   }
 
-  function followInsert(follow) {
-    $.ajax({    
-      type: "POST",
-      url: "/insertfollow",             
-      dataType: "text", 
-      data: {
-        follow : follow
-      }
-  });
-  document.getElementById ('follow-insert').style.display = 'none';
-  document.getElementById ('follow-remove').style.display = 'inline';
-  }
 
+
+//Một số chức năng của profileController đc gọi ở đây
+//Hiện người theo dõi của User
+function showFollower () {
+  let path = window.location.pathname;
+  let username = path.substring(6);
+  $.ajax({    
+    type: "POST",
+    url: "/showAllFollower",             
+    dataType: "text", 
+    data: {
+      username: username
+    },success: function (data) {
+      $('.app-follow-show').html(data);
+      document.getElementById ('detail-show').style.display = 'inline';
+      document.getElementById ('follower-show').style.display = 'none';
+    }
+});
+}
+
+function showFollowing () {
+  let path = window.location.pathname;
+  let username = path.substring(6);
+  $.ajax({    
+    type: "POST",
+    url: "/showAllFollowing",             
+    dataType: "text", 
+    data: {
+      username: username
+    },success: function (data) {
+      $('.app-follow-show').html(data);
+      document.getElementById ('detail-show').style.display = 'inline';
+      document.getElementById ('following-show').style.display = 'none';
+    }
+});
+}
+
+
+//

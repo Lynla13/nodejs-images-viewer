@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%- include('header/head')%>
 </head>
-<body id ="page-body" onload="loadUser()">
+<body id ="page-body" onload="loadUser();showFollowOnload()">
   <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
-            <title>40-basic</title>
             <!-- Single button -->
             <div class="btn-group">
             <button type="button" id ="home-show" class ="button-profile-more" onclick = "history.back()" > Back</button>
@@ -22,9 +21,9 @@
     <!-- Đây là sideBar -->
     <div class="col-sm-3" id ="side-fel">
     <div class="horiScoll">
-        <button type="button" id ="detail-show" class ="button-profile-more"   > Detail </button>
-        <button type="button" id ="follower-show" class ="button-profile-more"   > Người theo dõi </button>
-        <button type="button" id ="following-show" class ="button-profile-more"   > Đang theo dõi </button>
+        <button type="button" id ="detail-show" class ="button-profile-more"  onclick ="loadUserDetail ();" > Detail </button>
+        <button type="button" id ="follower-show" class ="button-profile-more"  onclick = "showFollower ();" > Người theo dõi </button>
+        <button type="button" id ="following-show" class ="button-profile-more"   onclick = "showFollowing ();"> Đang theo dõi </button>
         
         <input type="hidden"  id ="show-dislike" value="">
     </div>

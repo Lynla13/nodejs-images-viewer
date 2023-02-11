@@ -1,0 +1,5 @@
+<% for(var i=0; i < pageLimit; i++) { %>
+    <div style ="padding: 5px; height: 30px; background-color :#474747; margin-top: 10px; border-radius:2px">
+        <a class = 'a-fake' href = "/user/<%-getFollow[i].following %>" style ="color:white; ">@<%-getFollow[i].following %></a>
+    </div>
+<% } %> 

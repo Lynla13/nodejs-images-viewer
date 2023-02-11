@@ -8,13 +8,15 @@
       <p style="margin-top: -5px;font-style: italic; color:white ">Mô tả: <%-getProfile [0].profile_bkg %></p>
       <hr>
     <p  style="margin-top: -5px;font-style: italic; color:white ">Đang theo dõi: <%-getFollowing%></p>
-    <p  style="margin-top: -5px;font-style: italic; color:white ">Người theo dõi: <%-getFollower %></p>
+    <p  id ="showAllFollow" style="margin-top: -5px;font-style: italic; color:white ">Người theo dõi: <%-getFollower %></p>
     <hr>
+        <%if ( session == '') {%>
+        <% }%>
         <%if ( getProfile [0].username == session) {%>
             <button type="button" id ="following-show" class ="button-profile-more"   > Chỉnh sửa </button> 
         <% }%>
-        <%if ( getProfile [0].username != session) {%>
-            <button type="button" id ="following-show" class ="button-profile-more"   > Theo dõi </button> 
+        <%if ( getProfile [0].username != session &&session != '') {%>
+            <button type="button" id ="follow-insert" class ="button-profile-more"  onclick = "followInsert()" > Theo dõi </button> 
         <% }%>
     </div>
 </div>

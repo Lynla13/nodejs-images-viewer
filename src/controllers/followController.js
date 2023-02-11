@@ -9,23 +9,41 @@ async function showAllFollow (req,res) {
     res.end();
 }
 
+async function showFollowCount (req,res) {
+    let username = req.body.username;
+    console.log (username);
+    let Follow = await followModel.showAllFollower(username);
+    let followCount = Follow.length
+    console.log (followCount)
+    res.send({follow:followCount});
+    res.end();
+}
 async function showFollow(req,res) {
     let username = req.session.username || '';
     let follow = req.body.follow;
     let showFollows = await followModel.showFollow(username,follow);
-    if (showFollows.length > 0){
-        res.send ('Follow');
+    if (showFollows.length < 1){
+        res.send ('NoFollow');
     }else 
     {
-        res.send ('NoFollow');
+        res.send ('Follow');
     }
     res.end()    
 }
 
 async function insertFollow(req,res) {
+    //Thêm username và người theo dõi
     let username = req.session.username || '';
     let follow = req.body.follow;
-    followModel.insertFollow(username,follow);
+    let showFollows = await followModel.showFollow(username,follow);
+    if (showFollows.length < 1){
+        followModel.insertFollow(username,follow);
+        res.send ('follow')
+    }else 
+    {
+        followModel.removeFollow(username,follow);
+        res.send ('nofollow')
+    }    
     res.end()  
 }
 
@@ -38,5 +56,5 @@ async function removeFollow(req,res) {
 
 
 module.exports = {
-    removeFollow,insertFollow,showFollow,showAllFollow
+    removeFollow,insertFollow,showFollow,showAllFollow,showFollowCount
 }

@@ -1,0 +1,13 @@
+<div id ="postShow" style ="margin-left: 2%;">
+    <input type="text" id ="max-page" value ='<%-maxpage %>' hidden>
+    <input type="text" id ="is-tag-click" value ='<%-isTagClick%>' hidden>
+    <input type="text" id ="postTag" value ='<%-postTag %>' hidden>
+    <% for(var i=0; i < page; i++) { %>
+        <div id ="image-show-out-div" style ="height:148px; width: 110px;" > 
+             <input type="text" id ="author" value ='<%-postData [i].username %>' hidden>
+            <div id = '<%-postData [i].post_id %>' onclick = 'imgDetail(this.id)'>
+                <img temp class="lozad" src ="<%-postData [i].image %>" name = "<%-postData [i].image %>" id ="image-show-out" loading="lazy" style ="height:125px; width: 110px;"/>
+                <p id ="post_content" style="width: 90px;"><%-postData [i].post_content %></p>
+            </div>
+        </div>
+<% } %></div>

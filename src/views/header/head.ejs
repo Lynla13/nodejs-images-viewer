@@ -27,7 +27,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <% if (session != '') {
                   %> 
-                <li><a class ="a-fake" id = "profile-show" onclick=" freeLoad ('/p/<%-session%>')" > &nbsp;@<%-session%> </a></li>
+                <li><a class ="a-fake" href ="/user/<%-session%>" id = "profile-show" > &nbsp;@<%-session%> </a></li>
                 <li><a class ="a-fake" id ="post-add-show"><span class="glyphicon glyphicon-plus" ></span></a></li>
                 <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-send" ></span></a> </li>
                 <li><a class ="a-fake" id = "login-show" ><span class="glyphicon glyphicon-pushpin" ></span></a>   </li>

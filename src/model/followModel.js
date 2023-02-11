@@ -17,6 +17,13 @@ function showAllFollower(username) {
     let condi ="following = '"+username+"'";
     return ( baseModel.getByCondition(follow, condi));
 }
+
+
+
+function showAllFollowing(username) {
+    let condi ="username = '"+username+"'";
+    return ( baseModel.getByCondition(follow, condi));
+}
 //Hiện follow
 function showFollow (username,following) {
     let condi ="username = '"+username+"' and following ='"+following+"'";
@@ -29,10 +36,10 @@ function insertFollow(username,following)  {
     return ( baseModel.insertTable(follow,tableContent,values1) );
 }
 //Xóa follower
-function removeDislike(username,following)  {
+function removeFollow(username,following)  {
     let condi ="username = '"+username+"'and following = '"+following+"'";
     return ( baseModel.deleteCondi (follow , condi));
 }
 module.exports = {
- insertFollow,removeDislike,showAllFollow,showFollow,showAllFollower
+ insertFollow,removeFollow,showAllFollow,showFollow,showAllFollower,showAllFollowing
 }

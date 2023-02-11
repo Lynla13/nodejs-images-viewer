@@ -47,7 +47,7 @@ const initWebRouter = (app) => {
     router.post ('/deleteFailPics',postShowController.deleteFailPics);  
     router.post ('/autoCreateUser',postShowController.autoCreateUser);  
 
-
+    //Like
     router.post ('/showAllLike',likeController.showAllLike)
     router.post ('/insertLike',likeController.insertLike);
     router.post ('/showLikeOnLoad',likeController.showLike);
@@ -61,11 +61,17 @@ const initWebRouter = (app) => {
     router.post ('/insertFollow',followController.insertFollow);
     router.post ('/removeFollow',followController.removeFollow);
     router.post ('/showFollowOnload',followController.showFollow);
+    router.post ('/showFollowCount',followController.showFollowCount);
+
+
+    
 
     //Profile
     router.get ('/user/:username',profileController.getPage);
     router.post ('/showUserDetail', profileController.getDetail);
     router.post ('/getUserPost', profileController.showPostByUser);
+    router.post ('/showAllFollower',profileController.showAllFollower)
+    router.post ('/showAllFollowing',profileController.showAllFollow)
     return app.use('/', router);
 }
 export default initWebRouter

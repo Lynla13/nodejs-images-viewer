@@ -36,7 +36,28 @@ async function getDetail (req,res) {
     return  res.render('sideBar/profileDetail.ejs', {getFollowing: getFollowing.length, getFollower:getFollower.length, getProfile:getProfile, session: req.session.loggedin ? req.session.username: '' }); 
 }
 
+async function showAllFollow (req,res) {
+  let username = req.body.username;
+  let getFollowing = await followModel.showAllFollow(username);
+  let pageLimit = 50;
+  if (getFollowing.length<50) {
+    pageLimit = getFollowing.length;
+  }
+  res.render('sideBar/showFollowerUser.ejs', {pageLimit:pageLimit,getFollow: getFollowing});
+  res.end();
+}
+
+async function showAllFollower (req,res) {
+  let username = req.body.username;
+  let getFollower = await followModel.showAllFollower(username);
+  let pageLimit = 50;
+  if (getFollower.length<50) {
+    pageLimit = getFollower.length;
+  }
+  res.render('sideBar/showFollowUser.ejs', {pageLimit:pageLimit, getFollow: getFollower});
+  res.end();
+}
 
 module.exports = {
-    getPage,showPostByUser,getDetail
+    getPage,showPostByUser,getDetail,showAllFollow,showAllFollower
 }

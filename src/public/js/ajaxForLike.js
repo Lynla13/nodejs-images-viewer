@@ -40,21 +40,6 @@
     });
   }
 
-   function likeRemove() {
-    let path = window.location.pathname;
-    let post_id = path.substring(6);
-    $.ajax({    
-      type: "POST",
-      url: "/removeLike",             
-      dataType: "text", 
-      data: {
-        post_id: post_id,
-      }
-  });
-  document.getElementById ('like-insert').style.display = 'inline';
-  document.getElementById ('like-remove').style.display = 'none';
-  }
-
   function likeInsert() {
     let path = window.location.pathname;
     let post_id = path.substring(6);

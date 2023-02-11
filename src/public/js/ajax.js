@@ -26,7 +26,10 @@ function loadUserDetail (){
         },
         success: function(data){    
             $(".app-follow-show").html(data); 
+            showFollowOnload()
             document.getElementById ('detail-show').style.display ='none'
+            document.getElementById ('follower-show').style.display = 'inline';
+            document.getElementById ('following-show').style.display = 'inline';
         }
     });
 

@@ -1,18 +1,29 @@
 $(document).ready(function(){
     currentPage =1;
     let currentPath = window.location.pathname;
-    let post_id = currentPath.substring(6);
-    loadDetail (post_id)
+    if (currentPath.includes('post') >0) {
+      let post_id = currentPath.substring(6);
+      loadDetail (post_id);
+    }else if (currentPath.includes('user') >0) {
+      //LoadUserDetail here
+      loadUserDetail ()
+    }
+    else {
+      loadTags()
+    }
+    
   setTimeout (loadMore,2000,currentPage)
   $(window).scroll(function () {
     // End of the document reached?
     if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='false') {
         currentPage++
-        setTimeout (loadMore,500,currentPage)
-    }
-    if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='true') {
+        setTimeout (loadMore,100,currentPage)
+    }else if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='true') {
         currentPage++
-        setTimeout (loadMoreByTag,500,$('#postTag').val(),currentPage)
+        setTimeout (loadMoreByTag,300,$('#postTag').val(),currentPage)
+    }else if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='profile'){
+      currentPage++
+      loadUser(currentPage)
     }
   }); 
 });
@@ -39,6 +50,21 @@ function loadTags(){
   });
   }
 
+  function loadPostBySimilar(tags='hentai',author='akaneko',page=1) {
+    $.ajax({    
+      type: "POST",
+      url: "/post/similar"+page+"/"+tags,             
+      dataType: 'text', 
+      data :{
+        author:author,
+      },
+      success: function(data){    
+          $(".app-follow-show").html(data); 
+          document.getElementById ('detail-show').style.display ='inline-block'
+          document.getElementById ('similar-show').style.display ='none'
+      }
+  });
+  }
 function loadApi (){
     $.ajax({    
         type: "POST",
@@ -97,3 +123,45 @@ $(document).on('click','#signin-show',function(){
   });
   });
 
+  //Xóa ảnh lỗi 
+   function deleteFailPics (image) {
+    $.ajax({    
+      type: "POST",
+      url: "/deleteFailPics",             
+      dataType: "text",
+      data:{
+        image:image
+      }
+    });
+   }
+
+   //Load tự động tạo tài khoản 
+function autoCreateUser (author) {
+    $.ajax({    
+      type: "POST",
+      url: "/autoCreateUser",             
+      dataType: "text",
+      data:{
+        username:author
+      }
+    });
+  }
+
+
+  //tải nội dung cho user
+function loadUser(currentPage=1){
+  let path = window.location.pathname;
+  let username = path.substring(6);
+    $.ajax({    
+      type: "POST",
+      url: "/getUserPost",        
+      dataType: 'text', 
+      data:{
+        page: currentPage,
+        username:username
+      },
+      success: function(data){    
+          $("#landing-page-content-for-user").html(data); 
+      }
+  });
+  }

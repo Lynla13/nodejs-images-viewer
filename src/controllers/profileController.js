@@ -1,56 +1,42 @@
-import { Session } from "express-session";
-import pool from "../configs/connectDB";
-import homeModel from "../model/homeModel";
-import pageModel from "../model/pageModel";
+import followModel from "../model/followModel";
 import profileModel from "../model/profileModel";
 
-function getPage(req, res) {
-    let user = req.params.user || req.session.username || '';
-    let urlAcess = req.originalUrl;
-    let pageId = urlAcess.slice(0,2);
-    pageModel.getPageBy_Id(pageId,user).then(Page => {
-    getProfileInfo(req, res);
-    return res.render('index.ejs', {Page: Page , session: req.session.loggedin ? req.session.username: '' }); 
-  })   
+async function getPage(req, res) {
+    //Lấy thông tin nguòi dùng
+    return res.render('profile.ejs', {session: req.session.loggedin ? req.session.username: '' }); 
 }
 
+async function showPostByUser (req,res) {
+  let username = req.body.username;
+  let postByUser = await profileModel.showPostByUser(username);
+  let pageLimit = 8;
+  if (postByUser.length<8) 
+  {
+    pageLimit=postByUser.length;
+  }
+  let maxPage = Math.floor (postByUser.length/pageLimit-1);
+  let pageNum = req.body.page ||'1' ;
+  let page = pageLimit*pageNum;
+  let isTagClick = "profile";
+  res.render('profilePost.ejs', {maxpage: maxPage, page:page, postTag:username , isTagClick:isTagClick, session: req.session.loggedin ? req.session.username: '' ,postData:postByUser}); 
+  res.end();
+}
 
-function getProfileInfo(req, res) {
-    if (req.params.user != null) {
-        let user = req.params.user;
-       
-       profileModel.getByUsername (user).then(profile => {
-        if (profile [0].username == req.session.username) {
-            res.send (`<div id="profile_res" style="background-image: url(files/imgs/download.jpg);">
-            <img src="files/imgs/`+profile [0].profile_ava+`" id ="profile_ava_res" alt="avavtar">
-            <p id ="fullname_show">`+profile [0].fullname+`</p>
-            <p id ="username_show" >@`+profile [0].username+`</p>
-            <p id ="joindate_show" class="info-text-res">JoinDate: `+profile [0].joinday+`</p>
-            <p id ="followers_show" class="info-text-res">Follower: </p>
-            <p id ="followings_show" class="info-text-res">Following : </p>
-            </div>`);
-        }else {
-            res.send (`<div id="profile_res" style="background-image: url(files/imgs/download.jpg);">
-            <img src="files/imgs/`+profile [0].profile_ava+`" id ="profile_ava_res" alt="avavtar">
-            <p id ="fullname_show">`+profile [0].fullname+`</p>
-            <p id ="username_show" >@`+profile [0].username+`</p>
-            <p id ="joindate_show" class="info-text-res">JoinDate: `+profile [0].joinday+`</p>
-            <p id ="followers_show" class="info-text-res">Follower: </p>
-            <p id ="followings_show" class="info-text-res">Following : </p>
-            <div class="follow-info-swt-btn">
-            <button type="button" id="round-button"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            </div> 
-            </div>`);   
-        }
-        
-         })
-    }  else {
-        res.send (`<p style ="color: red"> Fuck you</p>`);
-
-    }     
+//hiển thị thông tin chi tiết; 
+//Gồm: profile, số lượng follow, following.
+async function getDetail (req,res) {
+    let username = req.body.username;
+    //Lấy thông tin nguòi dùng
+    let getProfile = await profileModel.getByUsername(username);
+    //Lấy danh sách nhứng ngưới mà user theo dõi
+    let getFollowing = await followModel.showAllFollow(username);
+    //Lấy danh sách những nhưới theo dõi user
+    let getFollower = await followModel.showAllFollower(username);
+    //Trả về giao diện
+    return  res.render('sideBar/profileDetail.ejs', {getFollowing: getFollowing.length, getFollower:getFollower.length, getProfile:getProfile, session: req.session.loggedin ? req.session.username: '' }); 
 }
 
 
 module.exports = {
-    getPage
+    getPage,showPostByUser,getDetail
 }

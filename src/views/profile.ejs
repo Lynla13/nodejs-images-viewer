@@ -1,0 +1,47 @@
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('header/head')%>
+</head>
+<body id ="page-body" onload="loadUser()">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+            <title>40-basic</title>
+            <!-- Single button -->
+            <div class="btn-group">
+            <button type="button" id ="home-show" class ="button-profile-more" onclick = "history.back()" > Back</button>
+            </div>
+            <hr>
+            <div id ="show-more-button"></div>
+            <div id ="landing-page-content-for-user" >
+            </div>
+            </div>
+    <!-- Đây là sideBar -->
+    <div class="col-sm-3" id ="side-fel">
+    <div class="horiScoll">
+        <button type="button" id ="detail-show" class ="button-profile-more"   > Detail </button>
+        <button type="button" id ="follower-show" class ="button-profile-more"   > Người theo dõi </button>
+        <button type="button" id ="following-show" class ="button-profile-more"   > Đang theo dõi </button>
+        
+        <input type="hidden"  id ="show-dislike" value="">
+    </div>
+    <hr>
+    <div class="app-follow-show">
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+<script>
+  const scrollContainer = document.querySelector(".horiScoll");
+    scrollContainer.addEventListener("wheel", (evt) => {
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+});
+</script>
+</html>
+
+

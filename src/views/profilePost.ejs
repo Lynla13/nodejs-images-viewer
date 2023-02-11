@@ -1,0 +1,16 @@
+<h2 style="color:white">@<%-postTag %></h2>
+<hr>
+<div id ="postShow">
+<input type="text" id ="max-page" value ='<%-maxpage %>' hidden>
+<input type="text" id ="is-tag-click" value ='<%-isTagClick%>' hidden>
+<input type="text" id ="postTag" value ='<%-postTag %>' hidden>
+<!-- //Tải ảnh -->
+<% for(var i=0; i < page; i++) { %>
+<div id ="image-show-out-div" > 
+ <input type="text" id ="author" value ='<%-postData [i].username %>' hidden>
+<div id = '<%-postData [i].post_id %>' onclick = 'imgDetail(this.id)'>
+    <img temp class="lozad" src ="<%-postData [i].image %>" name = "<%-postData [i].image %>" onError="this.onerror=null; deleteFailPics (this.src)"id ="image-show-out" onloading="lazy" />
+    <p id ="post_content"><%-postData [i].post_content %></p>
+</div>
+</div>
+<% } %></div>

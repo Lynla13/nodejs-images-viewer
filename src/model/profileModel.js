@@ -9,6 +9,11 @@ async function getByUsername(username)  {
     return Promise.resolve ( await baseModel.getByCondition(profile,condition));
 }
 
+async function showPostByUser(username)  {
+    let condition = 'username = "' + username + '"';
+    return Promise.resolve ( await baseModel.getByCondition('post',condition));
+}
+
  function updateUser_Profile(username, pass,email)  {
     let values1 ='"'+username+'","'+pass+'","'+email+'","0"' ;
     let userInfo ="'"+username+"'";
@@ -16,5 +21,5 @@ async function getByUsername(username)  {
 }
   
 module.exports = {
-    updateUser_Profile,getByUsername
+    updateUser_Profile,getByUsername,showPostByUser
 }

@@ -1,5 +1,5 @@
-  //Post-add
-  function showLikeCount () {
+  //Hiện số like
+  function showLikeCount (sth) {
     let path = window.location.pathname;
     let post_id = path.substring(6);
     $.ajax({    
@@ -11,11 +11,14 @@
         },
         success: function(data){     
             let fixedbase = data.replace('{"Like":', '')
-            let fixed = fixedbase.replace('}', '')
-            $("#showAllLike").html('Likes: '+fixed);    
+            let fixed = fixedbase.replace('}', '');
+            let toLikeNum = parseInt(fixed) 
+            //Nếu vừa ấnlike thì +1 vào nếu ấn dislike thì -1 
+            $("#showAllLike").html('Likes: '+(toLikeNum));    
         }
     });  
   }
+
 
   function showLikeOnload() {
     let path = window.location.pathname;
@@ -29,21 +32,17 @@
         },
         success: function(data){     
             $("#show-like").val(data);   
-            if(($('#show-like').val()) =='Liked') {
-                document.getElementById ('like-insert').style.display = 'none';
-                document.getElementById ('like-remove').style.display = 'inline';
-            }else {
-                document.getElementById ('like-insert').style.display = 'inline';
-                document.getElementById ('like-remove').style.display = 'none';
+            if(data =='Liked') {
+                document.getElementById ('like-insert').style.backgroundColor = '#6e6e6e';
+                document.getElementById ('like-insert').style.color = 'white';
             }
         }
     });
-    
   }
 
-
-
-   function likeRemove(post_id) {
+   function likeRemove() {
+    let path = window.location.pathname;
+    let post_id = path.substring(6);
     $.ajax({    
       type: "POST",
       url: "/removeLike",             
@@ -56,17 +55,27 @@
   document.getElementById ('like-remove').style.display = 'none';
   }
 
-  function likeInsert(post_id) {
+  function likeInsert() {
+    let path = window.location.pathname;
+    let post_id = path.substring(6);
     $.ajax({    
       type: "POST",
       url: "/insertLike",             
       dataType: "text", 
       data: {
         post_id: post_id,
+      },
+      success: function(data){     
+          $("#like-insert").val(data);   
+          if(data =='like') {
+              document.getElementById ('like-insert').style.backgroundColor = '#6e6e6e';
+              showLikeCount (data)
+          }else if(data =='nolike') {
+            document.getElementById ('like-insert').style.backgroundColor = '#222222';
+            showLikeCount (data)
+          }
       }
   });
-  document.getElementById ('like-insert').style.display = 'none';
-  document.getElementById ('like-remove').style.display = 'inline';
   }
 
 
@@ -91,6 +100,7 @@ function showDislikeCount () {
         }
     });  
   }
+
 
 function showDislikeOnload() {
     let path = window.location.pathname;

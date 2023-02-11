@@ -2,25 +2,37 @@ import { Callbacks } from "jquery";
 import baseModel from "./baseModel";
 //import connection from "../model/baseModel";
 
-let users = 'users';
-let profile = 'profile';
+let follow = 'follow';
+//viết các chức năng liên quan đến follow
+//- follow
+//-unfollow
 
-async function getByUsername(username)  {
-    let condition = 'username = "' + username + '"';
-    return Promise.resolve ( await baseModel.getByCondition(users,condition));
+//đếm những người mà user theo dõi
+function showAllFollow(username) {
+    let condi ="username = '"+username+"'";
+    return ( baseModel.getByCondition(follow, condi));
 }
-
- function insertUser_Profile(username, pass,email)  {
-    let values1 ='"'+username+'","'+pass+'","'+email+'","0"' ;
-    let userInfo ="'"+username+"'";
-    return ( baseModel.insertTwoTable(users,profile,values1,userInfo) );
+//Lấy những người theo dõi user
+function showAllFollower(username) {
+    let condi ="following = '"+username+"'";
+    return ( baseModel.getByCondition(follow, condi));
 }
-
-function insertUser_UserWall(username,following,post_tag)  {
-    let tableContent =`username,following,post_tag`
-    let values1 ='"'+username+'","'+following+'","'+post_tag+'"' ;
-    return ( baseModel.insertTable('userwall',tableContent,values1) );
+//Hiện follow
+function showFollow (username,following) {
+    let condi ="username = '"+username+"' and following ='"+following+"'";
+    return ( baseModel.getByCondition(follow, condi));
+}
+//Thêm follower
+function insertFollow(username,following)  {
+    let tableContent =`username,following`
+    let values1 ='"'+username+'","'+following+'"' ;
+    return ( baseModel.insertTable(follow,tableContent,values1) );
+}
+//Xóa follower
+function removeDislike(username,following)  {
+    let condi ="username = '"+username+"'and following = '"+following+"'";
+    return ( baseModel.deleteCondi (follow , condi));
 }
 module.exports = {
-    insertUser_Profile,getByUsername,insertUser_UserWall
+ insertFollow,removeDislike,showAllFollow,showFollow,showAllFollower
 }

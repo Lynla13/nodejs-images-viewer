@@ -28,6 +28,10 @@ async function showPostByPostTagNoLimit(post_tag,sort)  {
     let condition = `post_tag LIKE '%`+post_tag+`%' order by post_time `+sort+``;
     return Promise.resolve ( await baseModel.getByCondition(table,condition));
 }
+async function showPostBySimilarNoLimit(post_tag,username)  {
+    let condition = `post_tag = '`+post_tag+`' or username = '`+username+`'order by RAND ( )`;
+    return Promise.resolve ( await baseModel.getByCondition(table,condition));
+}
 
 async function showPostNoLimit()  {
     return Promise.resolve ( await baseModel.getCount('post_id',table));
@@ -47,12 +51,18 @@ async function showPostID(id)  {
     return Promise.resolve ( await baseModel.getByCondition(table,condition));
 }
 
+async function showPostByFollow (value) {
+    let condi = `username in (`+value+`) order by post_time desc`;
+    return Promise.resolve ( await baseModel.getByCondition(table,condi));
+}
 
 async function deletePostbyCondi (image){
     let condi = `image= '`+image+`'`;
     return Promise.resolve ( await baseModel.deleteCondi(table,condi));
 }
+
 module.exports = {
     insertPost,showPost,insertPostForAPI,showPostNoLimit,
-    showPostByPostTag,showTags,showPostTag,deletePostbyCondi,showPostByPostTagNoLimit,showPostID
+    showPostByPostTag,showTags,showPostTag,deletePostbyCondi,showPostByPostTagNoLimit,
+    showPostID,showPostBySimilarNoLimit,showPostByFollow
 }

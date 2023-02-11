@@ -7,6 +7,7 @@ import profileController from "../controllers/profileController";
 import pageController from "../controllers/pageController";
 import postController from "../controllers/postController";
 import likeController from "../controllers/likeController";
+import followController from "../controllers/followController";
 
 let router = express.Router();
 
@@ -26,6 +27,9 @@ const initWebRouter = (app) => {
     //Signin
     router.get('/home/s', signinController.getPage);
     router.post('/signin', signinController.signinAuth);
+    router.post('/choiceDevil', signinController.choiceDevil);
+    router.post('/choiceAngel', signinController.choiceAngel);
+
     //Apps
     router.get('/apps', pageController.getPage);
     //PageProfile
@@ -39,16 +43,29 @@ const initWebRouter = (app) => {
     router.get ('/postshow/detail/:postId',postShowController.getPostDetailSideBar);  
     router.post ('/post/loadApi',postShowController.loadPostOnLoad);  
     router.get ('/postshow/tags/:tags/:page',postShowController.loadPostByTag);
+    router.post ('/post/similar:page/:tags',postShowController.loadPostBySimilar);  
+    router.post ('/deleteFailPics',postShowController.deleteFailPics);  
+    router.post ('/autoCreateUser',postShowController.autoCreateUser);  
+
 
     router.post ('/showAllLike',likeController.showAllLike)
     router.post ('/insertLike',likeController.insertLike);
-    router.post ('/removeLike',likeController.removeLike);
     router.post ('/showLikeOnLoad',likeController.showLike);
     //Dislike
     router.post ('/showAllDislike',likeController.showAllDislike)
     router.post ('/insertDislike',likeController.insertDislike);
     router.post ('/removeDislike',likeController.removeDislike);
     router.post ('/showDislikeOnLoad',likeController.showDislike);
+    //follow
+    router.post ('/showAllFollow',followController.showAllFollow)
+    router.post ('/insertFollow',followController.insertFollow);
+    router.post ('/removeFollow',followController.removeFollow);
+    router.post ('/showFollowOnload',followController.showFollow);
+
+    //Profile
+    router.get ('/user/:username',profileController.getPage);
+    router.post ('/showUserDetail', profileController.getDetail);
+    router.post ('/getUserPost', profileController.showPostByUser);
     return app.use('/', router);
 }
 export default initWebRouter

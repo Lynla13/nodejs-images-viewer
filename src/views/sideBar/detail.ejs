@@ -1,15 +1,17 @@
 <div class="app-comment-show">
     <div style="margin-top: -20px;">
       <h2 id ="post-detail"><%-postData [0].post_content %></h2>
-      <h4 id ="post-detail" style="margin-top: -5px;font-style: italic;">#<%-postData [0].post_tag %></h4>
+      <div>
+        <h4 id ="post-detail" style="margin-top: -5px;font-style: italic; ">#<%-postData [0].post_tag %></h4>
+      </div>
     </div>
-    <div style="width: 100px;">
-      <a class ="a-fake" style="color: white; font-size: 12pt; float: left;">@<%-author [0].username %></a>
+    <div style="width: 1000px;float: left">
+      <a class ="a-fake" style="color: white; font-size: 12pt; display: inline-block">@<%-author [0].username %></a>
     </div>
     <div style=" float:left; width: 600px; margin-top: -5px;">
       <hr>
-      <p id ="showAllLike" style="color:white"></p>
-      <p id ="showAllDislike" style="color:white"></p>
+      <p id ="showAllLike" style="color:white">Likes: <%-like.length %> </p>
+      <!-- <p id ="showAllDislike" style="color:white"></p> -->
       <input type="hidden"  id ="show-like" value="">
     </div>
  </div>

@@ -44,7 +44,7 @@ async function getByCondition(table,condition) {
 //Fuction insert two tables in the same time
  function insertTwoTable(table1,table2,values1,username) {
    pool.query ('INSERT INTO '+table1+' (username, pass, email, level)  VALUES ('+values1+')');
-   pool.query ('INSERT INTO '+table2+' (username,fullname, birth_day, profile_ava, profile_bkg)  VALUES ('+username+',"unknow","00/00/0000","unknown.jpg","")');    
+   pool.query ('INSERT INTO '+table2+' (username,fullname, birth_day, profile_ava, profile_bkg)  VALUES ('+username+',"unknow","00/00/0000","files/imgs/unknown.jpg","")');    
 }
 
 //post and page_id
@@ -61,8 +61,11 @@ function insertTable(table1,tableContent,values1) {
     pool.query ('DELETE FROM '+table+' WHERE '+condi+'')
  }
 
-
+//Chọn từ 1 hoặc nhiều giá trị 
+function selectIn (table,colum,value) {
+    pool.query (`SELECT * FROM `+table+`  WHERE `+colum+` NOT IN (`+value+`)`)
+}
 
 module.exports = {
-    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3,getCount,getAllNoLimit,deleteCondi
+    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3,getCount,getAllNoLimit,deleteCondi,selectIn
 }

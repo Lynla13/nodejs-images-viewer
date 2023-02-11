@@ -5,30 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('header/head')%>
 </head>
-<body id ="page-body">
-    <div class="container-fluid">
-        <div class="row">
-        <div class="col-sm-9">
-        <title>40-basic</title>
-        <!-- Single button -->
-        <div class="btn-group">
-        <button type="button" id ="home-show" class ="button-profile-more" > Nothing </button>
-        <button type="button" id ="home-show" class ="button-profile-more" onclick ="loadApi ();window.location.href = '/'" > LoadMore </button>
-        </div>
-        <hr>
-        <div id ="show-more-button"></div>
-        <div id ="landing-page-content" >
-            <img src="files/imgs/loading.gif" id ="loading-img" alt="" srcset="" style="position: fixed; left:33%; width: 100px;">
-        </div>
-        </div>
-        <div class="col-sm-3" id ="side-fel">
-            <button type="button" id ="following-user-show" class ="button-profile-more" > Following </button>
-            <button type="button" id ="tag-show" class ="button-profile-more" onclick="loadTags()"> Tags </button>
-            <hr>
-            <div class="app-follow-show">
+<% if (session == ''|| session == 'nonSignUser') {%>
+    <body id ="page-body">
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-sm-9">
+            <title>40-basic</title>
+            <!-- Single button -->
+            <div class="btn-group">
+            <button type="button" id ="home-show" class ="button-profile-more" > Nothing </button>
             </div>
-        </div>
-</body>
+            <hr>
+            <div id ="show-more-button"></div>
+            <div id ="landing-page-content" >
+                <img src="files/imgs/loading.gif" id ="loading-img" alt="" srcset="" style="position: fixed; left:33%; width: 100px;">
+            </div>
+            </div>
+            <div class="col-sm-3" id ="side-fel">
+                <button type="button" id ="tag-show" class ="button-profile-more" onclick="loadTags()"> Tags </button>
+                <button type="button" id = "login-show" class ="button-profile-more" > Đăng nhập </button>
+                <button type="button"  id = "signin-show" class ="button-profile-more"> Đăng kí </button>
+                <hr>
+                <div class="app-follow-show">
+                </div>
+            </div>
+    </body>
+<%}else {%>
+    <% if (user[0].level == 0) {%>
+        <body id ="page-body">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-sm-9">
+                <title>40-basic</title>
+                <!-- Single button -->
+                <div class="btn-group">
+                <button type="button" id ="home-show" class ="button-profile-more" > Nothing </button>
+                </div>
+                <hr>
+                <div id ="show-more-button"></div>
+                <div id ="landing-page-content" >
+                    <img src="files/imgs/loading.gif" id ="loading-img" alt="" srcset="" style="position: fixed; left:33%; width: 100px;">
+                </div>
+                </div>
+                <div class="col-sm-3" id ="side-fel">
+                    <button type="button" id ="following-user-show" class ="button-profile-more" onclick = "showFollowCount ()"> Following </button>
+                    <button type="button" id ="tag-show" class ="button-profile-more" onclick="loadTags()"> Tags </button>
+                    
+                    <hr>
+                    <div class="app-follow-show">
+                    </div>
+                </div>
+        </body>
+    <%}%>
+    <% if (user[0].level == 1) {%>
+        <body id ="page-body">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-sm-9">
+                <title>40-basic</title>
+                <!-- Single button -->
+                <div class="btn-group">
+                <button type="button" id ="home-show" class ="button-profile-more" > Nothing </button>
+                <button type="button" id ="home-show" class ="button-profile-more" onclick ="loadApi ();window.location.href = '/'" > LoadMore </button>
+                </div>
+                <hr>
+                <div id ="show-more-button"></div>
+                <div id ="landing-page-content" >
+                    <img src="files/imgs/loading.gif" id ="loading-img" alt="" srcset="" style="position: fixed; left:33%; width: 100px;">
+                </div>
+                </div>
+                <div class="col-sm-3" id ="side-fel">
+                    <button type="button" id ="following-user-show" class ="button-profile-more" onclick = "showFollowCount ()"> Following </button>
+                    <button type="button" id ="tag-show" class ="button-profile-more" onclick="loadTags()"> Tags </button>
+                    <hr>
+                    <div class="app-follow-show">
+                    </div>
+                </div>
+        </body>
+    <%}%>
+<%}%>
+
 </html>
 
 

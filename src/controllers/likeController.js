@@ -15,12 +15,13 @@ async function showAllLike (req,res) {
 async function showLike(req,res) {
     let username = req.session.username || 'nonSignUser';
     let post_id = req.body.post_id;
+    console.log(post_id)
     let showLikes = await likeModel.showLike(post_id,username);
-    if (showLikes.length > 0){
-        res.send ('Liked');
+    if (showLikes.length < 1){
+        res.send ('NoLike');
     }else 
     {
-        res.send ('NoLike');
+        res.send ('Liked');
     }
     res.end()    
 }
@@ -28,19 +29,17 @@ async function showLike(req,res) {
 async function insertLike(req,res) {
     let username = req.session.username || 'nonSignUser';
     let post_id = req.body.post_id;
-    likeModel.insertLike(post_id,username);
+    let showLikes = await likeModel.showLike(post_id,username);
+    if (showLikes.length < 1){
+        likeModel.insertLike(post_id,username);
+        res.send ('like')
+    }else 
+    {
+        likeModel.removeLike(post_id,username);
+        res.send ('nolike')
+    }    
     res.end()  
 }
-
-async function removeLike(req,res) {
-    let username = req.session.username || 'nonSignUser';
-    let post_id = req.body.post_id;
-    likeModel.removeLike(post_id,username);
-    res.end()  
-}
-
-
-
 
 
 
@@ -82,5 +81,5 @@ async function removeDislike(req,res) {
 
 
 module.exports = {
-    showLike,insertLike,removeLike,removeDislike,insertDislike,showDislike,showAllDislike,showAllLike
+    showLike,insertLike,removeDislike,insertDislike,showDislike,showAllDislike,showAllLike
 } 

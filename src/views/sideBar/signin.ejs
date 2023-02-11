@@ -3,9 +3,10 @@
   <div class="form-group">
   <input type="text" name="username" class="form-control" id="username" placeholder="Username">
   <br>
-  <input type="password" name="username" class="form-control" id="pass" placeholder="Password">
+  <input type="password" name="username" class="form-control" id="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"placeholder="Password">
   <br>
-  <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+  <input type="text" name="email" class="form-control" id="email" placeholder="Email" >
   <br>
  <p id ="signin-auth"></p>
   <input type="submit" class ="form-control" id = "signin-submit" name ="signin-submit" value="Signin">

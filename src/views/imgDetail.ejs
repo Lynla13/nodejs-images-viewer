@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%- include('header/head')%>
 </head>
-<body id ="page-body" onload="showLikeOnload();showDislikeOnload();showLikeCount (),showDislikeCount ()">
+<input type="text"  id ="username" value="<%-postData [0].username %>" hidden>
+<body id ="page-body" onload="showLikeOnload();showLikeCount ();autoCreateUser($('#username').val())">
   <div class="container-fluid">
     <div class="row">
     <div class="col-sm-9">
@@ -22,20 +23,24 @@
         <p id ="post-react" style="color: white; font-size: 14pt; margin-bottom: -15px;">&nbspComment</p>
         <hr >
         <div class="commentSector">
-          <textarea name="" id="" class = "form-control" cols="30" rows="3" placeholder="Comment"></textarea>
+          <% if (session == ''|| session == 'nonSignUser') {%><%}else {%>
+            <textarea name="" id="" class = "form-control" cols="30" rows="3" placeholder="Comment"></textarea>
+          <%}%>
         </div>
       </div>
     </div>
     </div>
     <div class="col-sm-3" id ="side-fel">
+      <input type="text" name="" id="getAuthor"  value = "<%-postData [0].username%>" hidden>
     <div class="horiScoll">
-        <button type="button" id ="tag-show" class ="button-profile-more" onclick="loadSimilar()"> Similar </button>
+        <button type="button" id ="similar-show" class ="button-profile-more" name = "<%-postData [0].post_tag%>" onclick="loadPostBySimilar(this.name,$('#getAuthor').val())"> Similar </button>
+        <button type="button" id ="detail-show" class ="button-profile-more" name = '<%-postData [0].post_id %>' style ="display: none;" onclick="showLikeOnload() ;loadDetail (this.name);showLikeCount ()"> Detail </button>
         <input type="hidden"  id ="show-dislike" value="">
-        <button type="button" id ="dislike-insert" name = "<%-postData [0].post_id %>" class ="button-profile-more" onclick="dislikeInsert(this.name);showDislikeCount ()"> Dislike </button>
-        <button type="button" id ="dislike-remove" name = "<%-postData [0].post_id %>" class ="button-profile-more" onclick="dislikeRemove(this.name);showDislikeCount ()"> Disliked </button>
-        <button type="button" id ="like-insert" name = "<%-postData [0].post_id %>" class ="button-profile-more" onclick="likeInsert(this.name);showLikeCount ()"> Like </button>
-        <button type="button" id ="like-remove" name = "<%-postData [0].post_id %>" class ="button-profile-more" onclick="likeRemove(this.name);showLikeCount ()"> Liked </button>
-        <button type="button"  class ="button-profile-more" name = '<%-postData [0].post_id %>'onclick="loadDetail (this.name)"> Detail </button>
+        <!-- <button type="button" id ="dislike-insert" name = "<%-postData [0].post_id %>" class ="button-profile-more" onclick="dislikeInsert(this.name);showDislikeCount ()"> Dislike </button>
+        <button type="button" id ="dislike-remove" name = "<%-postData [0].post_id %>" class ="button-profile-more" onclick="dislikeRemove(this.name);showDislikeCount ()"> Disliked </button> -->
+        <% if (session == ''|| session == 'nonSignUser') {%><%}else {%>
+        <button type="button" id ="like-insert" class ="button-profile-more" onclick="likeInsert();"> Like </button>
+        <%}%>
     </div>
     <hr>
     <div class="app-follow-show">

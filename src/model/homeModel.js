@@ -9,7 +9,12 @@ let users = 'profile';
  async function getAllUser() {
     return Promise.resolve ( await baseModel.getAll(users));
 }
+
+async function getByUsername(username)  {
+    let condition = 'username = "' + username + '"';
+    return Promise.resolve ( await baseModel.getByCondition('users',condition));
+}
   
 module.exports = {
-    getAllUser
+    getAllUser,getByUsername
 }

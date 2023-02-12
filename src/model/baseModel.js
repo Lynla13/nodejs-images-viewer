@@ -66,6 +66,14 @@ function selectIn (table,colum,value) {
     pool.query (`SELECT * FROM `+table+`  WHERE `+colum+` NOT IN (`+value+`)`)
 }
 
+//Cập nhật by condi
+function updateByCondi (table,value,condi) {
+    pool.query (`UPDATE `+table+`
+    SET `+value+` 
+    WHERE `+condi+`;`)
+}
+
 module.exports = {
-    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3,getCount,getAllNoLimit,deleteCondi,selectIn
+    dbQuery,getAll,getByCondition,insertTwoTable,insertTable,NaturalJoin3,
+    getCount,getAllNoLimit,deleteCondi,selectIn,updateByCondi
 }

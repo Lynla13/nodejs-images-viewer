@@ -3,7 +3,6 @@ import postModel from "../model/postModel";
 import profileModel from "../model/profileModel";
 import followModel from "../model/followModel";
 import signinModel from "../model/signinModel";
-//import connection from "../model/baseModel";
 import likeModel from "../model/likeModel";
 
 const Quotes = require("randomquote-api");
@@ -44,22 +43,7 @@ async function loadPostData(req,res) {
 
 
 
-async function loadPostByTag (req,res) {
-  //pagation function
-  let tags = req.params.tags ;
-  let postDataTags = await postModel.showPostByPostTagNoLimit(tags,'desc');
-  let pageLimit = 6;
-  if (postDataTags.length<6) 
-  {
-    pageLimit=postDataTags.length;
-  }
-  let maxPage = Math.floor (postDataTags.length/pageLimit-1);
-  let pageNum = req.params.page ||'1' ;
-  let page = pageLimit*pageNum;
-  isTagClick = "true";
-  res.render('postShow.ejs', {maxpage: maxPage, page:page, postTag:tags, isTagClick:isTagClick, session: req.session.loggedin ? req.session.username: '' ,postData:postDataTags}); 
-  res.end();
-}
+
 
 async function loadPostBySimilar(req,res) {
   //pagation function
@@ -78,12 +62,6 @@ async function loadPostBySimilar(req,res) {
   res.end();
 }
 
-
-
-async function loadTags (req,res) {
-  let tagsData = await postModel.showTags();
-  return res.render('sideBar/tags.ejs', {tagsData:tagsData, session: req.session.loggedin ? req.session.username: '' }); 
-}
 
 
 
@@ -135,7 +113,7 @@ async function redditFectAPI (subreddit,number=10) {
 
 async function loadPostOnLoad (req,res) {
   let tagsData = await postModel.showTags();
-  for (let j=0; j<4;j++) {
+  for (let j=0; j<10;j++) {
     for (let i in tagsData)
       {
       let akaNekoApi = await postModel.showPostTag(tagsData[i].tags);
@@ -165,6 +143,6 @@ async function autoCreateUser (req,res) {
 
 
 module.exports = {
-  loadPostData,loadAPIPost,loadTags,getPostDetailPage,loadPostOnLoad,
-  loadPostByTag,getPostDetailSideBar,loadPostBySimilar,deleteFailPics,autoCreateUser 
+  loadPostData,loadAPIPost,getPostDetailPage,loadPostOnLoad,
+  getPostDetailSideBar,loadPostBySimilar,deleteFailPics,autoCreateUser 
 } 

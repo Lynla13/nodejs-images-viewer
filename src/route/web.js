@@ -8,6 +8,7 @@ import pageController from "../controllers/pageController";
 import postController from "../controllers/postController";
 import likeController from "../controllers/likeController";
 import followController from "../controllers/followController";
+import tagsController from "../controllers/tagsController";
 
 let router = express.Router();
 
@@ -38,14 +39,18 @@ const initWebRouter = (app) => {
 
     router.get ('/postshow/page=:page',postShowController.loadPostData);
     router.get ('/postapi',postShowController.loadAPIPost);
-    router.get ('/postshow/tags',postShowController.loadTags);  
-    router.get ('/post/:postId',postShowController.getPostDetailPage);  
-    router.get ('/postshow/detail/:postId',postShowController.getPostDetailSideBar);  
-    router.post ('/post/loadApi',postShowController.loadPostOnLoad);  
-    router.get ('/postshow/tags/:tags/:page',postShowController.loadPostByTag);
     router.post ('/post/similar:page/:tags',postShowController.loadPostBySimilar);  
     router.post ('/deleteFailPics',postShowController.deleteFailPics);  
     router.post ('/autoCreateUser',postShowController.autoCreateUser);  
+    router.get ('/post/:postId',postShowController.getPostDetailPage);  
+    router.get ('/postshow/detail/:postId',postShowController.getPostDetailSideBar);  
+    router.post ('/post/loadApi',postShowController.loadPostOnLoad);  
+    //tags
+    router.get ('/tags/:tags',tagsController.getPageByTags);
+    router.post ('/post/tags',tagsController.loadPostByTag);
+    router.get ('/postshow/tags',tagsController.loadTags);  
+
+
 
     //Like
     router.post ('/showAllLike',likeController.showAllLike)

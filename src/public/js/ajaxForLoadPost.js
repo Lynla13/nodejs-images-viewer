@@ -11,8 +11,13 @@ $(document).ready(function(){
     else {
       loadTags()
     }
-    
-  setTimeout (loadMore,2000,currentPage)
+    if (currentPath.includes('tags') >0) {
+      setTimeout (loadMoreByTag,3000,currentPage)
+    }else if (currentPath.includes('user') >0) {
+      setTimeout (loadUser,3000,currentPage)
+    }else {
+      setTimeout (loadMore,3000,currentPage)
+    }
   $(window).scroll(function () {
     // End of the document reached?
     if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='false') {
@@ -20,7 +25,7 @@ $(document).ready(function(){
         setTimeout (loadMore,100,currentPage)
     }else if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='true') {
         currentPage++
-        setTimeout (loadMoreByTag,300,$('#postTag').val(),currentPage)
+        setTimeout (loadMoreByTag,300,currentPage)
     }else if ($(window).scrollTop() >= $(document).height()- $(window).height()&& currentPage <= $('#max-page').val()&&$('#is-tag-click').val()=='profile'){
       currentPage++
       loadUser(currentPage)
@@ -72,16 +77,7 @@ function loadApi (){
         dataType: 'text'
     });
 }
-function loadMoreByTag (tag,page=1) {
-    $.ajax({    
-        type: "GET",
-        url: "/postshow/tags/"+tag+"/"+page,             
-        dataType: 'text', 
-        success: function(data){    
-            $("#landing-page-content").html(data); 
-        }
-    });
-}
+
   //imag Detail function
   function imgDetail(id) {
     window.location.href = '/post/'+id;
@@ -164,4 +160,33 @@ function loadUser(currentPage=1){
           $("#landing-page-content-for-user").html(data); 
       }
   });
+  }
+
+  //Tải nội dung cho Tags
+  function loadMoreByTag(currentPage=1){
+    let path = window.location.pathname;
+    let tags = path.substring(6);
+      $.ajax({    
+        type: "POST",
+        url: "/post/tags",        
+        dataType: 'text', 
+        data:{
+          page: currentPage,
+          tags:tags
+        },
+        success: function(data){    
+            $("#landing-page-content").html(data); 
+        }
+    });
+    }
+
+    function loadMor (tag,page=1) {
+      $.ajax({    
+          type: "GET",
+          url: "/postshow/tags/"+tag+"/"+page,             
+          dataType: 'text', 
+          success: function(data){    
+              $("#landing-page-content").html(data); 
+          }
+      });
   }

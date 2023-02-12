@@ -2,5 +2,5 @@
 
 <% for(var i=0; i < tagsData.length; i++) { %>
     <input type="button" class ="button-profile-more" id ="<%-tagsData[i].tags %>" 
-    style ="display:block; float:left; margin-top:6px; margin-left: 20px;"  onclick = "loadMoreByTag (this.id)" value="#<%-tagsData[i].tags %>">`
+    style ="display:block; float:left; margin-top:6px; margin-left: 20px;" onclick = "window.location.href = '/tags/<%-tagsData[i].tags %>'" value="#<%-tagsData[i].tags %>">`
  <% } %>     

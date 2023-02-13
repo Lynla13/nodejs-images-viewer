@@ -9,6 +9,7 @@ import postController from "../controllers/postController";
 import likeController from "../controllers/likeController";
 import followController from "../controllers/followController";
 import tagsController from "../controllers/tagsController";
+import nofiController from "../controllers/nofiController";
 
 let router = express.Router();
 
@@ -77,6 +78,13 @@ const initWebRouter = (app) => {
     router.post ('/getUserPost', profileController.showPostByUser);
     router.post ('/showAllFollower',profileController.showAllFollower)
     router.post ('/showAllFollowing',profileController.showAllFollow)
+
+     //Nofi
+     router.post ('/showNofi',nofiController.showNofi)
+     router.post ('/updateNofi',nofiController.updateNofi)
+     router.post ('/showNofiIcon',nofiController.showNofiIcon)
+     router.post ('/insertNofi',nofiController.insertNofi)
+
     return app.use('/', router);
 }
 export default initWebRouter

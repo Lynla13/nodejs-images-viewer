@@ -2,7 +2,7 @@
     <div style="margin-top: -20px;">
       <h2 id ="post-detail"><%-postData [0].post_content %></h2>
       <div>
-        <h4 id ="post-detail" style="margin-top: -5px;font-style: italic; ">#<%-postData [0].post_tag %></h4>
+        <h4 id ="post-detail" style="margin-top: -5px;font-style: italic; "  style = "cursor: pointer;" onclick = "window.location.href = '/tags/<%-postData [0].post_tag %>'">#<%-postData [0].post_tag %></h4>
       </div>
     </div>
     <div style="width: 1000px;float: left">

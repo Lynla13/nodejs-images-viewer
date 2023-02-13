@@ -1,4 +1,5 @@
 import postModel from "../model/postModel";
+import homeModel from "../model/homeModel";
 
 const Quotes = require("randomquote-api");
 const HMtai = require("hmtai");
@@ -30,9 +31,11 @@ async function loadTags (req,res) {
 }
 
 
-function getPageByTags (req,res) {
+async function getPageByTags (req,res) {
       //Lấy thông tin nguòi dùng
-      return res.render('index.ejs', {session: req.session.loggedin ? req.session.username: '' }); 
+      let username = req.session.username || ''
+      let user = await homeModel.getByUsername(username)
+      return res.render('index.ejs', {user:user,session: req.session.loggedin ? req.session.username: '' }); 
 }
 
 

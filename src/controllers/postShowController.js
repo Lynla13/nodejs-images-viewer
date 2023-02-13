@@ -79,9 +79,8 @@ async function getPostDetailPage (req,res) {
   let post_id = req.params.postId
   let postData= await postModel.showPostID(post_id);
   let postTagsData = await postModel.showPostTag(postData[0].post_tag);
-  let page = await pageModel.getPageBy_Id('/','lynla')
   let author = await profileModel.getByUsername(postData[0].username);
-  return res.render('imgDetail.ejs', {Page:page, author:author,postData: postData,tagsData:postTagsData,session: req.session.loggedin ? req.session.username: ''}); 
+  return res.render('imgDetail.ejs', {author:author,postData: postData,tagsData:postTagsData,session: req.session.loggedin ? req.session.username: ''}); 
 }
 
 async function getPostDetailSideBar (req,res) {

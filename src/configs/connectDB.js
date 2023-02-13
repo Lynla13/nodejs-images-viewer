@@ -8,3 +8,7 @@ const pool = mysql.createPool({
 })
 
 export default pool;
+
+// host: 'localhost',
+// user: 'root',
+// database: 'nodejs-basic',

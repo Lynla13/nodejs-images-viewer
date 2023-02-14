@@ -10,8 +10,7 @@ let isTagClick = "true";
 async function loadPostByTag (req,res) {
   //pagation function
   let tags = req.body.tags ;
-  let postDataTags = await postModel.showPostByPostTagNoLimit(tags,'desc');
-  let pageLimit = 6;
+  let postDataTags = await postModel.showPostByPostTagNoLimit(tags,'desc');  let pageLimit = 6;
   if (postDataTags.length<6) 
   {
     pageLimit=postDataTags.length;

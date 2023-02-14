@@ -98,7 +98,7 @@ $(document).on('click','#login-show',function(){
 $(document).on('click','#signin-show',function(){
   $.ajax({    
     type: "GET",
-    url: "/home/s",             
+    url: "/s",             
     dataType: "html",                  
     success: function(data){                    
         $('.app-follow-show').html(data)

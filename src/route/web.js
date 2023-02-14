@@ -27,7 +27,7 @@ const initWebRouter = (app) => {
     router.get('/logout', loginController.loadLogout);
     router.post('/login', loginController.LoginAuth);
     //Signin
-    router.get('/home/s', signinController.getPage);
+    router.get('/s', signinController.getPage);
     router.post('/signin', signinController.signinAuth);
     router.post('/choiceDevil', signinController.choiceDevil);
     router.post('/choiceAngel', signinController.choiceAngel);

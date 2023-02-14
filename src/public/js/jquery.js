@@ -121,5 +121,15 @@ $(document).on('click', '#logout', function (e) {
 });
 
   //
-
+  $(document).on('click','#signin-show',function(){
+    $.ajax({    
+      type: "POSt",
+      url: "/s",             
+      dataType: "html",                  
+      success: function(data){                    
+          $('.app-follow-show').html(data)
+      }
+  });
+  });
+  
 

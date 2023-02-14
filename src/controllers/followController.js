@@ -50,7 +50,12 @@ async function insertFollow(req,res) {
 async function removeFollow(req,res) {
     let username = req.session.username || '';
     let follow = req.body.follow;
-    followModel.removeFollow(username,follow);
+    let showFollows = await followModel.showFollow(username,follow);
+    if (showFollows.length <= 1){
+        res.end()
+    }else {
+        followModel.removeFollow(username,follow);
+    }   
     res.end()  
 }
 

@@ -50,11 +50,12 @@
         follow: username,
       },
       success: function(data){     
-          $("#follow-insert").val(data);   
           if(data =='follow') {
               document.getElementById ('follow-insert').style.backgroundColor = '#6e6e6e';
               document.getElementById('follow-insert').innerHTML = "Đã theo dõi";
               showFollowCount ()
+              var content = "Người dùng " + $('#session').val() + " đã theo dõi bạn";
+              insertNofi (username, content)
           }else if(data =='nofollow') {
             document.getElementById ('follow-insert').style.backgroundColor = '#222222';
             document.getElementById('follow-insert').innerHTML = "Theo dõi";

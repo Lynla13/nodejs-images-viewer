@@ -39,7 +39,7 @@ async function getCount(countColunm,table) {
 
 async function getByCondition(table,condition) {
     let result =[];
-    return result = await dbQuery('SELECT * FROM '+ table +' WHERE '+ condition +'');
+    return result = await dbQuery('SELECT DISTINCT * FROM '+ table +' WHERE '+ condition +'');
 }
 //Fuction insert two tables in the same time
  function insertTwoTable(table1,table2,values1,username) {

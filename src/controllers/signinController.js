@@ -6,7 +6,6 @@ function getPage(req, res) {
 }
 
 
-
 async function signinAuth(req, res) {
     //somting here
 	// Ensure the input fields exists and are not empty

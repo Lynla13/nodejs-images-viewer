@@ -1,0 +1,8 @@
+<h4 style = "color:white; float:left">Thông báo (<%-getUnreadNofi.length %>)</h4>
+<br>
+<hr>
+<% for(var i=0; i < getUnreadNofi.length; i++) { %>
+    <div style ="padding: 5px; height: auto;" id ="nofi-content">
+    <p style ="color:white; font-size: 11pt; ">- <%-getUnreadNofi[i].content %></p>
+</div>
+<% } %> 

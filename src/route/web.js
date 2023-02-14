@@ -27,7 +27,7 @@ const initWebRouter = (app) => {
     router.get('/logout', loginController.loadLogout);
     router.post('/login', loginController.LoginAuth);
     //Signin
-    router.get('/s', signinController.getPage);
+    router.post('/s', signinController.getPage);
     router.post('/signin', signinController.signinAuth);
     router.post('/choiceDevil', signinController.choiceDevil);
     router.post('/choiceAngel', signinController.choiceAngel);
@@ -81,7 +81,7 @@ const initWebRouter = (app) => {
 
      //Nofi
      router.post ('/showNofi',nofiController.showNofi)
-     router.post ('/updateNofi',nofiController.updateNofi)
+     router.post ('/deleteNofi',nofiController.deleteNofi)
      router.post ('/showNofiIcon',nofiController.showNofiIcon)
      router.post ('/insertNofi',nofiController.insertNofi)
 

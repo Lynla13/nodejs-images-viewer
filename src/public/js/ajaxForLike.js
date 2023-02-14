@@ -55,6 +55,8 @@
           if(data =='like') {
               document.getElementById ('like-insert').style.backgroundColor = '#6e6e6e';
               showLikeCount (data)
+              var content = "Người dùng " + $('#session').val() + " đã like 1 bài đăng của bạn";
+              insertNofi ($('#author').val(), content)
           }else if(data =='nolike') {
             document.getElementById ('like-insert').style.backgroundColor = '#222222';
             showLikeCount (data)

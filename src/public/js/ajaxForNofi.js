@@ -21,18 +21,29 @@ function insertNofi (username, content) {
       dataType: 'text', 
       success: function(data){    
             $(".app-follow-show").html(data); 
+            detleteNofi ()
+            document.getElementById('show-nofi').style.color = "#9d9d9d"
         }
   });
 }
 
 //Sử lý updateNofi
-function updateNofi () {
+function detleteNofi () {
     $.ajax({    
       type: "POST",
-      url: "/updateNofi",        
+      url: "/deleteNofi",        
       dataType: 'text', 
-      success: function(data){    
-            $(".app-follow-show").html(data); 
-        }
   });
+}
+
+function showNofiIcon () {
+  $.ajax({    
+    type: "POST",
+    url: "/showNofiIcon",        
+    dataType: 'text', 
+    success: function(data){    
+      if (data == 'unRead')
+        document.getElementById('show-nofi').style.color = "red"
+      }
+});
 }

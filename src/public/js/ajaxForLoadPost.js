@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    showNofiIcon ()
     currentPage =1;
     let currentPath = window.location.pathname;
     if (currentPath.includes('post') >0) {
@@ -94,18 +95,6 @@ $(document).on('click','#login-show',function(){
     }
 });
 });
-
-$(document).on('click','#signin-show',function(){
-  $.ajax({    
-    type: "GET",
-    url: "/s",             
-    dataType: "html",                  
-    success: function(data){                    
-        $('.app-follow-show').html(data)
-    }
-});
-});
-
 
   //post-add-show
   $(document).on('click','#post-add-show',function(e){

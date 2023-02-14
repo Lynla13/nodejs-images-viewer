@@ -3,31 +3,31 @@
 
 import nofiModel from "../model/nofiModel";
 
-
+//Hiển thị những nofi chưa đọc
 async function showNofi(req,res) {
     let username = req.session.username || '';
-    let showNofi= await nofiModel.showUserNofi(username);
-   return res.render ('sideBar/nofi.ejs',{showNofi:showNofi}) 
+    let getUnreadNofi = await nofiModel.getUnreadNofi(username);
+   return res.render ('sideBar/nofi.ejs',{getUnreadNofi:getUnreadNofi}) 
 }
 
 //Insert Nofi
 async function insertNofi(req,res) {
-    let username = req.session.username || '';
+    let username = req.body.username ;
     let content = req.body.content;
     nofiModel.insertUserNofi(username,content);
 }
 
 //Cập nhật tình trạng nofi
-async function updateNofi(req,res) {
+async function deleteNofi(req,res) {
     let username = req.session.username || '';
-    nofiModel.updateNofiByCondi ('check',username);
+    nofiModel.deleteNofiByCondi (username);
 }
 
 //thông báo nếu có nofi mới
 async function showNofiIcon(req,res) {
     let username = req.session.username || '';
-    let getUnreadNofi = await nofiModel.nofiModel(username);
-    if (getUnreadNofi.length >= 0) {
+    let getUnreadNofi = await nofiModel.getUnreadNofi(username);
+    if (getUnreadNofi.length > 0) {
         return  res.send ('unRead');
     }else {
         return  res.send ('readed')
@@ -39,5 +39,5 @@ async function showNofiIcon(req,res) {
 
 
 module.exports = {
-    showNofi,updateNofi,showNofiIcon,insertNofi
+    showNofi,deleteNofi,showNofiIcon,insertNofi
 } 

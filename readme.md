@@ -26,3 +26,7 @@
   - hàm có giá trị rỗng
   - sau khi người dùng click xem thì tự thêm giá trị cho hàng
   - Tạo hàm đếm
+
+- Một số chức năng chưa hoàn thiện (và sẽ ko đc hoàn thiện)
+  - bình luận
+  - tin nhắn
